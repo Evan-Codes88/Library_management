@@ -2,6 +2,7 @@ from flask import Flask
 import os
 
 from controllers.cli_controller import db_commands
+from controllers.author_controller import authors_bp
 from init import db, ma
 
 
@@ -14,5 +15,6 @@ def create_app():
     ma.init_app(app)
 
     app.register_blueprint(db_commands)
+    app.register_blueprint(authors_bp)
 
     return app

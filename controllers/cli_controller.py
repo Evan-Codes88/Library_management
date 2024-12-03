@@ -21,39 +21,39 @@ def seed_tables():
     authors = [
         Author(
             name = "J.R.R. Tolkein",
-            birth_year = "1892"
+            birth_year = 1892
         ),
         Author(
             name = "Brandon Sanderson",
-            birth_year = "1975"
+            birth_year = 1975
         ),
         Author(
             name = "Robin Hobb",
-            birth_year = "1952"
+            birth_year = 1952
         ),
         Author(
             name = "Gillian Flynn",
-            birth_year = "1971"
+            birth_year = 1971
         ),
         Author(
             name = "Stephen King",
-            birth_year = "1947"
+            birth_year = 1947
         ),
         Author(
             name = "Agatha Christie",
-            birth_year = "1890"
+            birth_year = 1890
         ),
         Author(
             name = "Rebecca Yarros",
-            birth_year = "1981"
+            birth_year = 1981
         ),
         Author(
             name = "John Gwynne",
-            birth_year = "1968"
+            birth_year = 1968
         ),
         Author(
             name = "J.K. Rowling",
-            birth_year = "1965"
+            birth_year = 1965
         ),
     ]
 

@@ -12,7 +12,7 @@ authors_bp = Blueprint("authors", __name__, url_prefix = "/authors")
 # Read All - /authors - GET
 @authors_bp.route("/")
 def get_authors():
-    stmt = db.select(Author)
+    stmt = db.select(Author).order_by(Author.id)
     authors_list = db.session.scalars(stmt)
     data = authors_schema.dump(authors_list)
     return data

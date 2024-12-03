@@ -7,10 +7,10 @@ class Author(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
 
-    name = db.Column(db.string(100), nullable = False)
+    name = db.Column(db.String(100), nullable = False)
     birth_year = db.Column(db.Integer)
 
-class AuthorSchema(ma.schema):
+class AuthorSchema(ma.Schema):
     class Meta:
         fields = ("id", "name", "birth_year")
 

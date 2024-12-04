@@ -2,6 +2,7 @@ from flask import Blueprint
 
 from init import db
 from models.author import Author
+from models.genre import Genre
 
 db_commands = Blueprint("db", __name__)
 
@@ -58,5 +59,33 @@ def seed_tables():
     ]
 
     db.session.add_all(authors)
+
+    genres = [
+        Genre(
+            genre_name = "Fantasy"
+        ),
+        Genre(
+            genre_name = "Romantasy"
+        ),
+        Genre(
+            genre_name = "Thriller"
+        ),
+        Genre(
+            genre_name = "Romance"
+        ),
+        Genre(
+            genre_name = "Murder Mystery"
+        ),
+        Genre(
+            genre_name = "Horror"
+        ),
+        Genre(
+            genre_name = "Adventure"
+        ),
+        Genre(
+            genre_name = "Science Fiction"
+        ),
+    ]
+    db.session.add_all(genres)
     db.session.commit()
     print("Tables Seeded")

@@ -3,7 +3,7 @@ from marshmallow import fields, validate
 from init import db, ma
 
 class Genre(db.Model):
-    __tablename__ = "genre"
+    __tablename__ = "genres"
 
     id = db.Column(db.Integer, primary_key = True)
     genre_name = db.Column(db.String(100), nullable = False)

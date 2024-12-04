@@ -231,7 +231,8 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
 ---
 
 
-- **Entity Relationship Diagram:**
+## **Entity Relationship Diagram:**
+
 ![ERD IMAGE](erd.png)
 
 

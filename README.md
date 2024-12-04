@@ -29,6 +29,8 @@ A simple but robust API used to manage a Library's operations. This includes boo
 
 This Library Management System (LMS) is designed to simplify the administrative tasks of librarians. It allows staff to effeciently manage book collections, member data, loan records and streamlines proccesses for efficiency.
 
+
+
 ## **Features**
 
 - **Book Management:** Add, update, delete and search for books or authors.
@@ -41,11 +43,15 @@ This Library Management System (LMS) is designed to simplify the administrative 
 
 - **Database Integration:** Uses SQLAlchemy for robust database management.
 
+
+
 ## **System Requirements**
 
 - **Python Version:** 3.9.6 or later  
 - **Database:** PostgreSQL recommended  
-- **Operating System:** Windows, macOS, or Linux  
+- **Operating System:** Windows, macOS, or Linux
+
+
 
 ## **Installation**
 
@@ -74,6 +80,8 @@ python -m venv venv
   source venv/bin/activate
   ```
 
+
+
 ### Installing the Required Packages
 
 Once the virtual environment is activated, install the necessary packages:
@@ -88,6 +96,7 @@ Alternatively, install each package individually:
 pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Flask-SQLAlchemy==3.1.1 greenlet==3.1.1 importlib_metadata==8.5.0 itsdangerous==2.2.0 Jinja2==3.1.4 MarkupSafe==3.0.2 marshmallow==3.23.1 marshmallow-sqlalchemy==1.1.0 packaging==24.2 psycopg2==2.9.10 python-dotenv==1.0.1 SQLAlchemy==2.0.36 typing_extensions==4.12.2 Werkzeug==3.1.3 zipp==3.21.0
 ```
 
+
 ### How to Run the API
 
 1. Ensure your virtual environment is activated.
@@ -98,6 +107,8 @@ pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Fl
 3. Access the API at `http://localhost:8080`.
 
 ---
+
+
 
 ## Required Packages
 
@@ -122,6 +133,8 @@ pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Fl
 - **zipp:** 3.21.0  
 
 ---
+
+
 
 ## Licensing and Legal/Ethical Impacts
 
@@ -170,6 +183,8 @@ The LMS API should be used responsibly, adhering to legal and ethical standards:
 For more information about licensing, visit [Open Source Initiative](https://opensource.org/licenses/MIT).
 
 
+
+
 ## Explanation of Chosen Database System
 
 The database system I have chosen for this Library Management System (LMS) is a **Relational Database Management System (RDBMS)**. 
@@ -194,6 +209,8 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
 
 ---
 
+
+
 ### Comparison to Other Database Systems:
 
 **Relational Database vs. NoSQL Database:**  
@@ -211,6 +228,8 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
   NoSQL is often used for large-scale applications, while RDBMS are generally used for structured data with fixed relationships.  
 
 ---
+
+
 
 ### Conclusion:
 For the Library Management System, a **relational database** is the optimal choice. It provides a solid foundation for managing structured data, ensuring clear relationships between entities, maintaining data integrity, and supporting complex queries.

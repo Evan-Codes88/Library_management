@@ -14,8 +14,8 @@ class AuthorSchema(ma.Schema):
     # Field level validation
     name = fields.String(
     validate = [
-        validate.Length(min=2, error="Name must be at least 2 characters long."),
-        validate.Regexp('^[A-Za-z\s\-.]+$', error="Name can only contain letters, spaces, hyphens, and periods.")
+        validate.Length(min = 2, error = "Name must be at least 2 characters long."),
+        validate.Regexp('^[A-Za-z\s\-.]+$', error = "Name can only contain letters, spaces, hyphens, and periods.")
     ])
     birth_year = fields.Integer(
         validate=validate.Range(min=1800, max=2024, error="Birth year must be between 1900 and 2024.")

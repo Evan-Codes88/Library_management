@@ -21,6 +21,7 @@ A simple but robust API used to manage a Library's operations. This includes boo
 - [Explanation of Chosen Database System](#explanation-of-chosen-database-system)
    - [Key Features of RDBMS](#key-features-of-rdbms)
    - [Comparison to Other Database Systems](#comparison-to-other-database-systems)
+   - [Entity Relationship Diagram](#entity-relationship-diagram)
    - [Conclusion](#conclusion)
 - [Credits](#credits)
 
@@ -229,6 +230,9 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
 
 ---
 
+
+- **Entity Relationship Diagram:**
+![ERD IMAGE](erd.png)
 
 
 ### Conclusion:

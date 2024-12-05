@@ -6,7 +6,7 @@ class Genre(db.Model):
     __tablename__ = "genres"
 
     id = db.Column(db.Integer, primary_key = True)
-    genre_name = db.Column(db.String(100), nullable = False)
+    genre_name = db.Column(db.String(100), nullable = False, unique = True)
 
 class GenreSchema(ma.Schema):
     genre_name = fields.String(

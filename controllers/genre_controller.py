@@ -27,4 +27,28 @@ def get_genre(genre_id):
     else:
         return {"message": f"Genre with id {genre_id} does not exist"}, 404
 
+# Create - /genres - POST
+@genres_bp.route("/", methods = ["POST"])
+def create_genre():
+    try:
+        body_data = genre_schema.load(request.get_json())
+        new_genre = Genre(
+            genre_name = body_data.get("genre_name")
+        )
+        db.session.add(new_genre)
+        db.session.commit()
+        return genre_schema.dump(new_genre), 201
     
+    except ValidationError as err:
+        errors = [message for messages in err.messages.values()for message in messages]
+        response = OrderedDict([
+            ("message", "Validation failed"),
+            ("errors", errors)
+        ])
+        return response, 400
+    
+    except IntegrityError as err:
+        if err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
+            return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
+        if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
+            return {"message": "The provided name is already taken. Please try another"}, 409

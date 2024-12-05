@@ -14,8 +14,7 @@ authors_bp = Blueprint("authors", __name__, url_prefix = "/authors")
 def get_authors():
     stmt = db.select(Author).order_by(Author.id)
     authors_list = db.session.scalars(stmt)
-    data = authors_schema.dump(authors_list)
-    return data
+    return authors_schema.dump(authors_list)
 
 # Read One - /authors/id - GET
 @authors_bp.route("/<int:author_id>")
@@ -23,8 +22,7 @@ def get_author(author_id):
     stmt = db.select(Author).filter_by(id = author_id)
     author = db.session.scalar(stmt)
     if author:
-        data = author_schema.dump(author)
-        return data
+        return author_schema.dump(author)
     else:
         return {"message": f"Author with id {author_id} does not exist"}, 404
     

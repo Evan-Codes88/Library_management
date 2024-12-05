@@ -32,6 +32,11 @@ def get_genre(genre_id):
 def create_genre():
     try:
         body_data = genre_schema.load(request.get_json())
+        body_data["genre_name"] = body_data["genre_name"].strip()
+        # Ensure name is not empty after stripping
+        if not body_data["genre_name"]:
+            return {"message": "Genre name cannot be empty"}, 400
+        
         new_genre = Genre(
             genre_name = body_data.get("genre_name")
         )
@@ -78,6 +83,11 @@ def update_genre(genre_id):
     if genre:
         try:
             validated_data = genre_schema.load(body_data)
+            body_data["genre_name"] = body_data["genre_name"].strip()
+            # Ensure name is not empty after stripping
+            if not body_data["genre_name"]:
+                return {"message": "Genre name cannot be empty"}, 400
+            
             genre.genre_name = validated_data.get("genre_name") or genre.genre_name
             db.session.commit()
             return genre_schema.dump(genre)

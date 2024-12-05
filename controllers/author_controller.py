@@ -31,6 +31,11 @@ def get_author(author_id):
 def create_author():
     try:
         body_data = author_schema.load(request.get_json())
+        body_data["name"] = body_data["name"].strip()
+        # Ensure name is not empty after stripping
+        if not body_data["name"]:
+            return {"message": "Name cannot be empty"}, 400
+
         new_author = Author(
             name = body_data.get("name"),
             birth_year = body_data.get("birth_year")
@@ -79,6 +84,11 @@ def update_author(author_id):
     if author:
         try:
             validated_data = author_schema.load(body_data)
+            validated_data["name"] = validated_data["name"].strip()
+            # Ensure name is not empty after stripping
+            if not body_data["name"]:
+                return {"message": "Name cannot be empty"}, 400
+            
             author.name = validated_data.get("name") or author.name
             author.birth_year = validated_data.get("birth_year") or author.birth_year
             db.session.commit()

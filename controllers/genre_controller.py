@@ -52,3 +52,15 @@ def create_genre():
             return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
         if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
             return {"message": "The provided name is already taken. Please try another"}, 409
+
+# Delete - /genre/id - DELETE
+@genres_bp.route("/<int:genre_id>", methods = ["DELETE"])
+def delete_genre(genre_id):
+    stmt = db.select(Genre).filter_by(id = genre_id)
+    genre = db.session.scalar(stmt)
+    if genre:
+        db.session.delete(genre)
+        db.session.commit()
+        return {"message": f"Genre '{genre.genre_name}' deleted successfully"}
+    else:
+        return {"message": f"Genre '{genre_id}' does not exist"},404

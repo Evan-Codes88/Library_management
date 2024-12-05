@@ -73,6 +73,9 @@ def update_author(author_id):
     author = db.session.scalar(stmt)
     body_data = request.get_json()
 
+    if not body_data:
+        return {"message": "No data provided or invalid JSON"}, 400
+
     if author:
         try:
             validated_data = author_schema.load(body_data)

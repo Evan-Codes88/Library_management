@@ -12,8 +12,9 @@ A simple but robust API used to manage a Library's operations. This includes boo
   - [Setting up the Virtual Environment (venv)](#setting-up-the-virtual-environment-venv)
   - [Activating the Virtual Environment](#activating-the-virtual-environment)
   - [Installing the Required Packages](#installing-the-required-packages)
-- [How to Run the API](#how-to-run-the-api)
-- [Required Packages](#required-packages)
+  - [Required Packages](#required-packages)
+- [Prerequisites](#Prerequisites)
+  - [How to Run the API](#how-to-run-the-api)
 - [Licensing and Legal/Ethical Impacts](#licensing-and-legalethical-impacts)
    - [License Overview](#license-overview)
    - [Full MIT License Text](#full-mit-license-text)
@@ -23,6 +24,7 @@ A simple but robust API used to manage a Library's operations. This includes boo
    - [Comparison to Other Database Systems](#comparison-to-other-database-systems)
    - [Entity Relationship Diagram](#entity-relationship-diagram)
    - [Conclusion](#conclusion)
+   - [Feedback](#feedback)
 - [Credits](#credits)
 
 
@@ -97,20 +99,6 @@ Alternatively, install each package individually:
 pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Flask-SQLAlchemy==3.1.1 greenlet==3.1.1 importlib_metadata==8.5.0 itsdangerous==2.2.0 Jinja2==3.1.4 MarkupSafe==3.0.2 marshmallow==3.23.1 marshmallow-sqlalchemy==1.1.0 packaging==24.2 psycopg2==2.9.10 python-dotenv==1.0.1 SQLAlchemy==2.0.36 typing_extensions==4.12.2 Werkzeug==3.1.3 zipp==3.21.0
 ```
 
-
-### How to Run the API
-
-1. Ensure your virtual environment is activated.
-2. Start the API server:
-   ```bash
-   flask run
-   ```
-3. Access the API at `http://localhost:8080`.
-
----
-
-
-
 ## Required Packages
 
 - **blinker:** 1.9.0  
@@ -132,6 +120,45 @@ pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Fl
 - **typing_extensions:** 4.12.2  
 - **Werkzeug:** 3.1.3  
 - **zipp:** 3.21.0  
+
+## **Prerequisites**
+
+**Before running the API for the first time, ensure the following steps are completed:**
+
+---
+
+### **Set Up PostgreSQL Database**
+
+1. Create a new database in PostgreSQL:
+
+   ```sql
+   CREATE DATABASE lms_api;
+   ```
+2. Define a DATABASE_URI in your ```.env``` file
+  an example looks like this:
+    ```bash
+    DATABASE_URI=postgresql://username:password@localhost:5432/lms_api
+    ```
+    Replace username, password, and localhost with your postgreSQL credentials.
+
+### **Initialize the Database Tables**
+
+Use Flask CLI commands to create the necessary tables:
+
+```bash
+flask db create # This creates your entity tables
+flask db seed # This seeds alll of the data
+flask db drop # This will drop all tables and relations
+```
+
+### How to Run the API
+
+1. Ensure your virtual environment is activated.
+2. Start the API server:
+   ```bash
+   flask run
+   ```
+3. Access the API at `http://localhost:8080`.
 
 ---
 
@@ -234,6 +261,37 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
 ## **Entity Relationship Diagram:**
 
 ![ERD IMAGE](erd.png)
+
+
+---
+
+### Feedback
+
+Who: Taner Maddocks
+When: 6/12/24
+Feedback:
+***Strengths***
+
+- Very well structured document, easy to navigate and read.
+
+- Description of the application leaves nothing to be confused about in terms of its function.
+
+- Dependencies installation is easy to follow.
+
+- Your Explanation of Chosen Database section and Licensing and Legal/Ethical impacts section are both well-structured.
+
+***Areas for improvement***
+
+- When describing the first run of the application, you don't describe the necessity to create the database in postgreSQL or the steps to use the cli commands to create the tables.
+
+- Linked to that, is that the user would need to define their own DATABASE_URI, which would require instruction.
+
+- Only other nitpick is that you have your Required Packages section separate from the instructions to install said packages.
+
+Action Taken:
+  ***Updated Prerequisites to explain how to initialise database and use CLI commands***
+  ***Explained how to define DATABASE_URI and what file to do so***
+  ***Moved required packages to be in the same section as install packages***
 
 
 ### Conclusion:

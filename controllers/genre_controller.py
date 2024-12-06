@@ -6,6 +6,7 @@ from collections import OrderedDict
 
 from init import db
 from models.genre import Genre, genre_schema, genres_schema
+from utils.error_handlers import handle_integrity_error, handle_validation_error
 
 genres_bp = Blueprint("genres", __name__, url_prefix = "/genres")
 
@@ -45,18 +46,10 @@ def create_genre():
         return genre_schema.dump(new_genre), 201
     
     except ValidationError as err:
-        errors = [message for messages in err.messages.values()for message in messages]
-        response = OrderedDict([
-            ("message", "Validation failed"),
-            ("errors", errors)
-        ])
-        return response, 400
+        return handle_validation_error(err)
     
     except IntegrityError as err:
-        if err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
-            return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
-        if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
-            return {"message": "The provided name is already taken. Please try another"}, 409
+       return handle_integrity_error(err)
 
 # Delete - /genre/id - DELETE
 @genres_bp.route("/<int:genre_id>", methods = ["DELETE"])
@@ -93,18 +86,9 @@ def update_genre(genre_id):
             return genre_schema.dump(genre)
         
         except ValidationError as err:
-            errors = [message for messages in err.messages.values() for message in messages]
-            return {"message": "Validation failed", "errors": errors}, 400
+            return handle_validation_error(err)
         
         except IntegrityError as err:
-
-            if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
-                return {"message": "The provided name is already taken. Please try another"}, 409
-                        
-            elif err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
-                return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
-            else:
-                return {"message": "An integrity error occurred. Please try again"}, 400
-
+            return handle_integrity_error(err)
     else:
         return {"message": f"Genre with id {genre_id} does not exist"}

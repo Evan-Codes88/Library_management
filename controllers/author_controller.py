@@ -6,6 +6,7 @@ from collections import OrderedDict
 
 from init import db
 from models.author import Author, author_schema, authors_schema
+from utils.error_handlers import handle_integrity_error, handle_validation_error
 
 authors_bp = Blueprint("authors", __name__, url_prefix = "/authors")
 
@@ -45,18 +46,10 @@ def create_author():
         return author_schema.dump(new_author), 201
     
     except ValidationError as err:
-        errors = [message for messages in err.messages.values() for message in messages]
-        response = OrderedDict([
-            ("message", "Validation failed"),
-            ("errors", errors)
-        ])
-        return response, 400
+        return handle_validation_error(err)
     
     except IntegrityError as err:
-        if err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
-            return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
-        if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
-            return {"message": "The provided name is already taken. Please try another"}, 409
+       return handle_integrity_error(err)
         
 # Delete - /authors/id - DELETE
 @authors_bp.route("/<int:author_id>", methods = ["DELETE"])
@@ -95,18 +88,9 @@ def update_author(author_id):
             return author_schema.dump(author)
         
         except ValidationError as err:
-            errors = [message for messages in err.messages.values() for message in messages]
-            return {"message": "Validation failed", "errors": errors}, 400
+            return handle_validation_error(err)
         
         except IntegrityError as err:
-
-            if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
-                return {"message": "The provided name is already taken. Please try another"}, 409
-            
-            elif err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
-                return {"message": f"The '{err.orig.diag.column_name}' is required and cannot be null"}, 400
-            else:
-                return {"message": "An integrity error occurred. Please try again"}, 400
-
+            return handle_integrity_error(err)
     else:
         return {"message": f"Author with id {author_id} does not exist"}

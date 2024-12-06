@@ -158,7 +158,7 @@ flask db drop # This will drop all tables and relations
    ```bash
    flask run
    ```
-3. Access the API at `http://localhost:8080`.
+3. Access the API at `http://localhost:5432`.
 
 ---
 

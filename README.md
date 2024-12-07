@@ -267,9 +267,11 @@ ACID (Atomicity, Consistency, Isolation, Durability) properties guarantee that t
 
 ### Feedback
 
-Who: Taner Maddocks
-When: 6/12/24
+Who: Taner Maddocks\
+When: 6/12/24\
+What Document: README.md\
 Feedback:
+<br>
 ***Strengths***
 
 - Very well structured document, easy to navigate and read.

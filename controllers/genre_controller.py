@@ -2,7 +2,6 @@ from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from psycopg2 import errorcodes
 from marshmallow import ValidationError
-from collections import OrderedDict
 
 from init import db
 from models.genre import Genre, genre_schema, genres_schema

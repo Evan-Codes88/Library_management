@@ -25,10 +25,10 @@ class Member(db.Model):
 class MemberSchema(ma.Schema):
     name = fields.String(
         validate = [
-            validate.Length(min = 2, error = "Genre Name must be at least 2 characters long."),
+            validate.Length(min = 2, error = "Name must be at least 2 characters long."),
             validate.Regexp(r'^[A-Za-z\s\-.]+$', error = "Name can only contain letters, spaces, hyphens, and periods.")
     ])
-    membership_number = fields.Integer(
+    membership_number = fields.String(
         validate = validate.Regexp(r'^\d{8}$', error = "Membership Number must contain 8 digits.")
     )
     email = fields.String(

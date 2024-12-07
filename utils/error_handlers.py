@@ -22,8 +22,23 @@ def handle_validation_error(err: ValidationError):
 
 def handle_integrity_error(err: IntegrityError):
     if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
-        return format_error_response("The provided name is already taken. Please try another", status_code = 409)
+        # Try to get detailed error message from PostgreSQL
+        error_detail = str(err.orig).lower()
+
+        # Check for specific fields in the error detail string
+        if 'name' in error_detail:
+            return format_error_response("The provided name is already taken. Please try another.", status_code=409)
+        elif 'email' in error_detail:
+            return format_error_response("The provided email is already in use. Please try another.", status_code=409)
+        elif 'membership_number' in error_detail:
+            return format_error_response("The provided membership number is already in use. Please try another.", status_code=409)
+        else:
+            return format_error_response(f"A unique constraint violation occurred on a column. Details: {error_detail}", status_code=409)
+
+    # Check for NOT_NULL_VIOLATION
     elif err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
-        return format_error_response(f"The '{err.orig.diag.column_name}' is required and cannot be null", status_code = 400)
+        column_name = getattr(err.orig.diag, 'column_name', 'unknown')
+        return format_error_response(f"The '{column_name}' is required and cannot be null", status_code=400)
+    
     else:
-        return format_error_response("An integrity error occurred. Please try again", status_code = 400)
+        return format_error_response("An integrity error occurred. Please try again", status_code=400)

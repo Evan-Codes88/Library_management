@@ -18,7 +18,7 @@ class Member(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable = False, unique = True)
-    membership_number = db.Column(db.Integer, nullable = False, unique = True)
+    membership_number = db.Column(db.String(8), nullable = False, unique = True)
     email = db.Column(db.String(100), unique = True)
     join_date = db.Column(db.Date)
 

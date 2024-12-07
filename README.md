@@ -290,10 +290,10 @@ Feedback:
 
 - Only other nitpick is that you have your Required Packages section separate from the instructions to install said packages.
 
-Action Taken:
-  ***Updated Prerequisites to explain how to initialise database and use CLI commands***
-  ***Explained how to define DATABASE_URI and what file to do so***
-  ***Moved required packages to be in the same section as install packages***
+***Action Taken:***
+  - Updated Prerequisites to explain how to initialise database and use CLI commands
+  - Explained how to define DATABASE_URI and what file to do so
+  - Moved required packages to be in the same section as install packages
 
 
 ### Conclusion:

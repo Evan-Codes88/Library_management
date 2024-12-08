@@ -6,6 +6,7 @@ from marshmallow import ValidationError
 from init import db
 from models.genre import Genre, genre_schema, genres_schema
 from utils.error_handlers import handle_integrity_error, handle_validation_error
+from utils.strip import validate_and_strip_field
 
 genres_bp = Blueprint("genres", __name__, url_prefix = "/genres")
 
@@ -73,21 +74,22 @@ def update_genre(genre_id):
         return {"message": "No data provided or invalid JSON"}, 400
 
     if genre:
-        try:
-            validated_data = genre_schema.load(body_data)
-            body_data["genre_name"] = body_data["genre_name"].strip()
-            # Ensure name is not empty after stripping
-            if not body_data["genre_name"]:
-                return {"message": "Genre name cannot be empty"}, 400
+            try:
+                validated_data = genre_schema.load(body_data)
+
+                # Update only provided fields
+                if "genre_name" in validated_data:
+                    genre.genre_name = validate_and_strip_field(validated_data, "genre_name")
+                    if not genre.genre_name:
+                        return {"message": "Genre Name cannot be empty"}, 400
+
+                db.session.commit()
+                return genre_schema.dump(genre)
+
+            except ValidationError as err:
+                return handle_validation_error(err)
             
-            genre.genre_name = validated_data.get("genre_name") or genre.genre_name
-            db.session.commit()
-            return genre_schema.dump(genre)
-        
-        except ValidationError as err:
-            return handle_validation_error(err)
-        
-        except IntegrityError as err:
-            return handle_integrity_error(err)
+            except IntegrityError as err:
+                return handle_integrity_error(err)
     else:
-        return {"message": f"Genre with id {genre_id} does not exist"}
+        return {"message": f"Genre with id {genre_id} does not exist"}, 404

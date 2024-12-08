@@ -7,6 +7,7 @@ from collections import OrderedDict
 from init import db
 from models.author import Author, author_schema, authors_schema
 from utils.error_handlers import handle_integrity_error, handle_validation_error
+from utils.strip import validate_and_strip_field
 
 authors_bp = Blueprint("authors", __name__, url_prefix = "/authors")
 
@@ -77,13 +78,16 @@ def update_author(author_id):
     if author:
         try:
             validated_data = author_schema.load(body_data)
-            validated_data["name"] = validated_data["name"].strip()
-            # Ensure name is not empty after stripping
-            if not body_data["name"]:
-                return {"message": "Name cannot be empty"}, 400
-            
-            author.name = validated_data.get("name") or author.name
-            author.birth_year = validated_data.get("birth_year") or author.birth_year
+
+            # Update only provided fields
+            if "name" in validated_data:
+                author.name = validate_and_strip_field(validated_data, "name")
+                if not author.name:
+                    return {"message": "Name cannot be empty"}, 400
+
+            if "birth_year" in validated_data:
+                author.birth_year = validated_data["birth_year"]
+
             db.session.commit()
             return author_schema.dump(author)
         
@@ -93,4 +97,4 @@ def update_author(author_id):
         except IntegrityError as err:
             return handle_integrity_error(err)
     else:
-        return {"message": f"Author with id {author_id} does not exist"}
+        return {"message": f"Author with id {author_id} does not exist"}, 404

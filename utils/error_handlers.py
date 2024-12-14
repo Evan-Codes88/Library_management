@@ -1,7 +1,6 @@
-from marshmallow import ValidationError
+from marshmallow import ValidationError, validate
 from sqlalchemy.exc import IntegrityError
 from psycopg2 import errorcodes
-from collections import OrderedDict
 
 
 def format_error_response(message, errors=None, status_code=400):
@@ -42,3 +41,8 @@ def handle_integrity_error(err: IntegrityError):
     
     else:
         return format_error_response("An integrity error occurred. Please try again", status_code=400)
+
+
+def validate_isbn(self, value):
+    if not (validate.Regexp(r"^\d{9}[\dX]$", value) or validate.Regexp(r"^\d{13}$", value)):
+        raise ValidationError("ISBN must be either 10 or 13 digits long.")

@@ -14,6 +14,8 @@ class Member(db.Model):
     email = db.Column(db.String(100), nullable = False, unique = True)
     join_date = db.Column(db.Date)
 
+    loan = db.relationship("Loans", back_populates = "members", cascade = "all, delete-orphan")
+
 class MemberSchema(ma.Schema):
     name = fields.String(
         validate = [

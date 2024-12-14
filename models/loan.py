@@ -13,6 +13,9 @@ class Loan(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable = False)
     member_id = db.Column(db.Integer, db.ForeignKey("member.id") , nullable = False)
 
+    member = db.relationship("Members", back_populates = "loans")
+    book = db.relationship("Books", back_populates = "loans")
+
 class LoanSchema(ma.Schema):
     borrow_date = fields.Date(
          validate = validate_date_range

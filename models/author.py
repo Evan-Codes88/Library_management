@@ -6,9 +6,10 @@ class Author(db.Model):
     __tablename__ = "authors"
 
     id = db.Column(db.Integer, primary_key = True)
-
     name = db.Column(db.String(100), nullable = False, unique = True)
     birth_year = db.Column(db.Integer)
+
+    book = db.relationship("Books", back_populates = "authors", cascade = "all, delete-orphan")
 
 class AuthorSchema(ma.Schema):
     # Field level validation

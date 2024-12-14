@@ -8,6 +8,8 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     genre_name = db.Column(db.String(100), nullable = False, unique = True)
 
+    book = db.relationship("Books", back_populates = "genres", cascade = "all, delete-orphan")
+
 class GenreSchema(ma.Schema):
     genre_name = fields.String(
         validate = [

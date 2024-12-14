@@ -295,6 +295,46 @@ Feedback:
   - Explained how to define DATABASE_URI and what file to do so
   - Moved required packages to be in the same section as install packages
 
+<br>
+
+Who: Brendon A\
+When: 12/12/24\
+What Document: README.md\
+Feedback:
+<br>
+Reviewing your ERD, maybe you can expand or briefly explain its relationship in the README? e.g. explain why author to books has a mandatory one to many relationship? As i was thinking, in your database design, an author can exist without a book because the Author table does not depend on the Book table for its existence. i.e. On the Author side, it would have double lines (||) indicating that one author can exist without necessarily having written any books. On the Book side, it would have a zero or many notation (0..*) indicating that a book must have one and only one author but one author can write zero or many books. If not, an explanation would be good to explain.
+
+Your database explanation on why it is chosen and comparison is succinct and clear. However, additions of example would be nice to expand a little more for ease of understanding for different types of users (especially for beginners trying to comprehend databases). For instance, under normalisation, while the normalisation is explained i.e. it reduces redundancy etc, an example like "For instance, instead of storing author information repeatedly in the Book table, you have a separate Author table linked to the Book table through author_id." would be good.
+
+Nevertheless, your readme is comprehensive and easy to navigate with the table of content as a good addition. Ethical considerations were also added exemplifying that you give this project a thorough thought including its legal implications. I could only think of one simple addition for your readme installation guide: maybe you can add instructions for cloning the repository if users are starting from scratch? Otherwise, really great work!
+
+***Action Taken:***
+
+  - My relationship between author and book stayed the same as a book cannot exist without an author and an author cannot exist without writing a book.
+
+  - Expanded on the normalization within my README.md
+
+<br>
+
+Who: Chris A\
+When: 14/12/24\
+What Document: Member.py\
+Feedback:
+<br>
+**Strengths:**
+
+Your Member model and schema are well-structured, demonstrating a solid grasp of Flask, Marshmallow, and database modelling. The validate_date_range function is particularly well-implemented, enforcing constraints on the join_date field with clear, user-friendly error messages. Marshmallow’s validators for name, membership_number, and email enhance data integrity, while the custom error messages improve usability. Including a Meta class in the schema to define output fields adds further clarity and organisation.
+
+**Areas for Improvement:**
+
+The email field is nullable in the database but requires validation in the schema. If it’s optional, consider conditionally validating only non-empty values. While the database enforces uniqueness, adding similar checks to the schema could prevent duplicate entries earlier in the process. For the join_date field, setting a default value (e.g., today’s date) could handle empty submissions better. Additionally, the rationale for using January 1, 2001, as the minimum date in validate_date_range is unclear; a comment could clarify this choice.
+
+Lastly, refining the membership_number error message to emphasise its requirement for eight numeric characters could improve clarity.
+
+***Action Taken:***
+- Email changed to be not-null
+- Code Comment addressing why January 1st 2001 is the minimum date for my validation
+- ' added to my validation in name
 
 ### Conclusion:
 For the Library Management System, a **relational database** is the optimal choice. It provides a solid foundation for managing structured data, ensuring clear relationships between entities, maintaining data integrity, and supporting complex queries.

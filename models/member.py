@@ -14,7 +14,7 @@ class Member(db.Model):
     email = db.Column(db.String(100), nullable = False, unique = True)
     join_date = db.Column(db.Date)
 
-    loan = db.relationship("Loans", back_populates = "members", cascade = "all, delete-orphan")
+    loans = db.relationship("Loan", back_populates = "member", cascade = "all, delete-orphan")
 
 class MemberSchema(ma.Schema):
     name = fields.String(
@@ -29,7 +29,7 @@ class MemberSchema(ma.Schema):
         validate =
         validate.Regexp(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', error = "Please enter a valid email address 'e.g., example@email.com'")
     )
-    join_date = fields.Date(validate=validate_date_range())  # Apply custom date validation
+    join_date = fields.Date(validate=validate_date_range)  # Apply custom date validation
 
     class Meta:
         fields = ("id", "name", "membership_number", "email", "join_date")

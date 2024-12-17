@@ -3,12 +3,11 @@ from marshmallow import fields, validate
 from init import db, ma
 
 class Genre(db.Model):
-    __tablename__ = "genres"
-
+    __tablename__ = "genre"
     id = db.Column(db.Integer, primary_key = True)
     genre_name = db.Column(db.String(100), nullable = False, unique = True)
 
-    book = db.relationship("Books", back_populates = "genres", cascade = "all, delete-orphan")
+    books = db.relationship("Book", back_populates = "genre", cascade = "all, delete-orphan")
 
 class GenreSchema(ma.Schema):
     genre_name = fields.String(

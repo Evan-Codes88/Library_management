@@ -1,4 +1,4 @@
-from marshmallow import fields, ValidationError, validates_schema
+from marshmallow import fields, ValidationError
 
 
 from init import db, ma
@@ -10,18 +10,19 @@ class Loan(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     borrow_date = db.Column(db.Date, nullable = False)
     return_date = db.Column(db.Date, nullable = False)
-    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable = False)
-    member_id = db.Column(db.Integer, db.ForeignKey("member.id") , nullable = False)
+    book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable = False)
+    member_id = db.Column(db.Integer, db.ForeignKey("members.id") , nullable = False)
 
-    member = db.relationship("Members", back_populates = "loans")
-    book = db.relationship("Books", back_populates = "loans")
+    book = db.relationship("Book", back_populates = "loans")
+    member = db.relationship("Member", back_populates = "loans")
+   
 
 class LoanSchema(ma.Schema):
     borrow_date = fields.Date(
-         validate = validate_dates()
+         validate = validate_dates
     )
     return_date = fields.Date(
-        validate = validate_dates()
+        validate = validate_dates
     )
             
     class Meta:

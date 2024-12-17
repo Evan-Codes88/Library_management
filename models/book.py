@@ -13,9 +13,9 @@ class Book(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("author.id"), nullable = False)
     genre_id = db.Column(db.Integer, db.ForeignKey("genre.id"), nullable = False)
 
-    loan = db.relationship("Loans", back_populates = "books", cascade = "all, delete-orphan")
-    author = db.relationship("Authors", back_populates = "books")
-    genre = db.relationship("Genres", back_populates = "books")
+    author = db.relationship("Author", back_populates = "books")
+    genre = db.relationship("Genre", back_populates = "books")
+    loans = db.relationship("Loan", back_populates = "book", cascade = "all, delete-orphan")
 
 
 class BookSchema(ma.Schema):
@@ -25,7 +25,7 @@ class BookSchema(ma.Schema):
             validate.Regexp(r"^[A-Za-z\s\-.']+$", error = "Name can only contain letters, spaces, hyphens, apostraphes and periods.")
         ])
     isbn = fields.String(
-        validate = validate_isbn()
+        validate = validate_isbn
     )
 
     class Meta:

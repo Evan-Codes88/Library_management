@@ -336,6 +336,13 @@ Lastly, refining the membership_number error message to emphasise its requiremen
 - Code Comment addressing why January 1st 2001 is the minimum date for my validation
 - ' added to my validation in name
 
+***Justification***
+- The email field is critical for identifying and communicating with members, so making it non-null ensures the data's completeness and reliability. Previously, while the schema enforced validation on email format, the database allowed null values. This discrepancy could lead to inconsistent or incomplete data being stored. By setting email to NOT NULL, you ensure that both the schema and database align, preventing situations where invalid data bypasses validation and causing issues downstream.
+- Including a code comment to explain why January 1st, 2001, was chosen as the minimum date improves code readability and maintainability. Without context, future developers (or even yourself) might question this arbitrary-looking constraint. Clarifying that it serves as a logical cutoff for "modern memberships" or aligns with system requirements removes ambiguity and enhances code transparency.
+```January 1st, 2001 is used as the minimum join date to ensure no outdated or incorrect data is submitted.```
+- Adding an apostrophe (') or refining validation for the name field clarifies the requirement to the user. Proper error messages improve usability by explicitly stating what input is acceptable. For example, ensuring names are alphabetic and meet other constraints (e.g., length or special character restrictions) helps users correct their input more efficiently. Improved error messages also make the system feel polished and user-friendly.
+
+
 ### Conclusion:
 For the Library Management System, a **relational database** is the optimal choice. It provides a solid foundation for managing structured data, ensuring clear relationships between entities, maintaining data integrity, and supporting complex queries.
 

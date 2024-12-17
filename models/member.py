@@ -20,7 +20,7 @@ class MemberSchema(ma.Schema):
     name = fields.String(
         validate = [
             validate.Length(min = 2, error = "Name must be at least 2 characters long."),
-            validate.Regexp(r"^[A-Za-z\s\-.']+$", error = "Name can only contain letters, spaces, hyphens, and periods.")
+            validate.Regexp(r"^[A-Za-z\s\-.']+$", error = "Name can only contain letters, spaces, hyphens, apostraphes and periods.")
     ])
     membership_number = fields.String(
         validate = validate.Regexp(r'^\d{8}$', error = "Membership Number must contain 8 digits.")
@@ -29,7 +29,7 @@ class MemberSchema(ma.Schema):
         validate =
         validate.Regexp(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', error = "Please enter a valid email address 'e.g., example@email.com'")
     )
-    join_date = fields.Date(validate=validate_date_range)  # Apply custom date validation
+    join_date = fields.Date(validate=validate_date_range())  # Apply custom date validation
 
     class Meta:
         fields = ("id", "name", "membership_number", "email", "join_date")

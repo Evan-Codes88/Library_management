@@ -22,7 +22,7 @@ class BookSchema(ma.Schema):
     title = fields.String(
         validate = [
             validate.Length(min = 2, error = "Title must be at least 2 characters long."),
-            validate.Regexp(r"^[A-Za-z\s\-.']+$", error = "Name can only contain letters, spaces, hyphens, and periods.")
+            validate.Regexp(r"^[A-Za-z\s\-.']+$", error = "Name can only contain letters, spaces, hyphens, apostraphes and periods.")
         ])
     isbn = fields.String(
         validate = validate_isbn()

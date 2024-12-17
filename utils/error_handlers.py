@@ -44,5 +44,5 @@ def handle_integrity_error(err: IntegrityError):
 
 
 def validate_isbn(self, value):
-    if not (validate.Regexp(r"^\d{9}[\dX]$", value) or validate.Regexp(r"^\d{13}$", value)):
+    if not (validate.Regexp(r"^(?:\d{1,5}-)?(?:\d{1,7}-)?(?:\d{1,6}-)?\d{1,3}[\dX]$", value) or validate.Regexp(r"^(?:\d{3}-)?\d{1,5}-\d{1,7}-\d{1,6}-\d{1}$", value)):
         raise ValidationError("ISBN must be either 10 or 13 digits long.")

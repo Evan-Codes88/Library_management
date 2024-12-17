@@ -4,6 +4,7 @@ from init import db
 from models.author import Author
 from models.genre import Genre
 from models.member import Member
+from models.book import Book
 
 db_commands = Blueprint("db", __name__)
 
@@ -163,7 +164,181 @@ def seed_tables():
             join_date = "2020-07-18"
         )
     ]
-    
+
     db.session.add_all(members)
+
+    books = [
+        Book(
+            title = "The Fellowship Of The Ring",
+            isbn = "978-0-261-10235-4",
+            available_copies = 5,
+            author_id = 1,
+            genre_id = 1
+        ),
+        Book(
+            title = "The Two Towers",
+            isbn = "978-0-261-10236-1",
+            available_copies = 3,
+            author_id = 1,
+            genre_id = 1
+        ),
+        Book(
+            title = "The Return Of The King",
+            isbn = "978-0-7653-2636-2",
+            available_copies = 5,
+            author_id = 1,
+            genre_id = 1
+        ),
+        Book(
+            title="The Final Empire",
+            isbn="978-0-7653-5037-4",
+            available_copies=5,
+            author_id=2,  
+            genre_id=1    
+        ),
+        Book(
+            title="The Well of Ascension",
+            isbn="978-0-7653-5612-4",
+            available_copies=4,
+            author_id=2,
+            genre_id=1
+        ),
+        Book(
+            title="The Hero of Ages",
+            isbn="978-0-7653-5613-1",
+            available_copies=5,
+            author_id=2,
+            genre_id=1
+        ),
+        Book(
+            title="The Way of Kings",
+            isbn="978-0-7653-2635-5",
+            available_copies=6,
+            author_id=2,
+            genre_id=1
+        ),
+        Book(
+            title = "Words Of Radiance",
+            isbn = "978-0-7653-2636-2",
+            available_copies = 5,
+            author_id = 2,
+            genre_id = 1
+        ),
+         Book(
+            title="Oathbringer",
+            isbn="978-0-7653-2637-9",
+            available_copies=4,
+            author_id=2,
+            genre_id=1
+        ),
+        Book(
+            title="Rhythm of War",
+            isbn="978-0-7653-2638-6",
+            available_copies=3,
+            author_id=2,
+            genre_id=1
+        ),
+        Book(
+            title = "Assassin's Apprentice",
+            isbn = "978-0-553-37423-4",
+            available_copies = 3,
+            author_id = 3,
+            genre_id = 1
+        ),
+        Book(
+            title = "Gone Girl",
+            isbn = "978-0-307-58836-4",
+            available_copies = 7,
+            author_id = 4,
+            genre_id = 3
+        ),
+        Book(
+            title = "Sharp Objects",
+            isbn = "978-0-307-34156-3",
+            available_copies = 4,
+            author_id = 4,
+            genre_id = 3
+        ),
+        Book(
+            title = "The Shining",
+            isbn = "978-0-385-12167-5",
+            available_copies = 6,
+            author_id = 5,
+            genre_id = 6
+        ),
+        Book(
+            title = "It",
+            isbn = "978-1-5011-7688-6",
+            available_copies = 2,
+            author_id = 5,
+            genre_id = 6
+        ),
+        Book(
+            title = "Murder on the Orient Express",
+            isbn = "978-0-00-711931-8",
+            available_copies = 9,
+            author_id = 6,
+            genre_id = 5
+        ),
+        Book(
+            title = "And Then There Were None",
+            isbn = "978-0-06-207348-8",
+            available_copies = 5,
+            author_id = 6,
+            genre_id = 5
+        ),
+        Book(
+            title="Fourth Wing",
+            isbn="978-0-346-47568-8",
+            available_copies=7,
+            author_id=7,  
+            genre_id=2
+        ),
+        Book(
+            title="Iron Flame",
+            isbn="978-0-346-47569-5",
+            available_copies=6,
+            author_id=7,
+            genre_id=2
+        ),
+        Book(
+            title = "The Hunger Of The Gods",
+            isbn = "978-0-316-70554-8",
+            available_copies = 1,
+            author_id = 8,
+            genre_id = 1
+        ),
+        Book(
+            title = "The Shadow Of The Gods",
+            isbn = "978-0-316-54092-6",
+            available_copies = 2,
+            author_id = 8,
+            genre_id = 1
+        ),
+        Book(
+            title = "Harry Potter and the Philosopher's Stone",
+            isbn = "978-0-7475-3269-6",
+            available_copies = 2,
+            author_id = 9,
+            genre_id = 1
+        ),
+        Book(
+            title = "Harry Potter And The Chamber Of Secret's",
+            isbn = "978-0-7475-3849-1",
+            available_copies = 9,
+            author_id = 9,
+            genre_id = 1
+        ),
+        Book(
+            title="Harry Potter and the Prisoner of Azkaban",
+            isbn="978-0-7475-4215-3",
+            available_copies=8,
+            author_id=9,
+            genre_id=1
+        ),
+    ]
+    
+    db.session.add_all(books)
+
     db.session.commit()
     print("Tables Seeded")

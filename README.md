@@ -291,9 +291,19 @@ Feedback:
 - Only other nitpick is that you have your Required Packages section separate from the instructions to install said packages.
 
 ***Action Taken:***
-  - Updated Prerequisites to explain how to initialise database and use CLI commands
-  - Explained how to define DATABASE_URI and what file to do so
-  - Moved required packages to be in the same section as install packages
+- Updated Prerequisites to explain how to initialise database and use CLI commands
+- Explained how to define DATABASE_URI and what file to do so
+- Moved required packages to be in the same section as install packages
+
+***Justification***
+- A critical step for the first run of the application is to set up the database properly. Without clear instructions on initializing the PostgreSQL database and creating tables using CLI commands, users might struggle to get the application running. Adding this to the "Prerequisites" section ensures users are prepared before running the app and reduces confusion. It improves usability and makes the setup process self-contained and complete.
+```Providing commands like flask db init or SQL scripts ensures all necessary database setup actions are easy to follow.```
+- The DATABASE_URI is essential for connecting to the database, and it needs to be user-specific (e.g., username, password, host, and database name). Without clear guidance on:
+  - Where the DATABASE_URI needs to be defined (e.g., config.py or .env file).
+  - How to format the connection string properly (e.g., postgresql://user:password@localhost/dbname), users might not know how to proceed.
+Providing this explanation makes the application setup developer-friendly and removes ambiguity.
+- Having the "Required Packages" section separate from the installation steps creates unnecessary fragmentation and can disrupt the user’s flow when setting up the application.
+
 
 <br>
 
@@ -342,6 +352,7 @@ Lastly, refining the membership_number error message to emphasise its requiremen
 ```January 1st, 2001 is used as the minimum join date to ensure no outdated or incorrect data is submitted.```
 - Adding an apostrophe (') or refining validation for the name field clarifies the requirement to the user. Proper error messages improve usability by explicitly stating what input is acceptable. For example, ensuring names are alphabetic and meet other constraints (e.g., length or special character restrictions) helps users correct their input more efficiently. Improved error messages also make the system feel polished and user-friendly.
 
+<br>
 
 ### Conclusion:
 For the Library Management System, a **relational database** is the optimal choice. It provides a solid foundation for managing structured data, ensuring clear relationships between entities, maintaining data integrity, and supporting complex queries.

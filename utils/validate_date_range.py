@@ -10,16 +10,3 @@ def validate_date_range(value):
         raise ValidationError(f"Date must be on or after {min_date.strftime('%B %d, %Y')}.")
     if value > today_date:
         raise ValidationError(f"Date must be on or before {today_date.strftime('%B %d, %Y')}.")
-    
-
-@validates_schema
-def validate_dates(self, data):
-    """
-    Validates the relationship between borrow_date and return_date.
-    """
-    borrow_date = data.get("borrow_date")
-    return_date = data.get("return_date")
-
-    if borrow_date and return_date:
-        if return_date < borrow_date:
-            raise ValidationError({"return_date": "Return date must be on or after the borrow date."})

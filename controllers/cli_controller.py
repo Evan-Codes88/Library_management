@@ -50,38 +50,38 @@ def seed_tables():
         ),
         Book(
             title = "The Return Of The King",
-            isbn = " 978-0-261-10237-8",
+            isbn = "978-0-261-10237-8",
             available_copies = 5,
             author_id = 1,
             genre_id = 1
         ),
         Book(
-            title="The Final Empire",
-            isbn="978-0-7653-5037-4",
-            available_copies=5,
-            author_id=2,  
-            genre_id=1    
+            title = "The Final Empire",
+            isbn = "978-0-7653-5037-4",
+            available_copies = 5,
+            author_id = 2,  
+            genre_id = 1    
         ),
         Book(
-            title="The Well of Ascension",
-            isbn="978-0-7653-5612-4",
-            available_copies=4,
-            author_id=2,
-            genre_id=1
+            title = "The Well of Ascension",
+            isbn = "978-0-7653-5612-4",
+            available_copies = 4,
+            author_id = 2,
+            genre_id = 1
         ),
         Book(
-            title="The Hero of Ages",
-            isbn="978-0-7653-5613-1",
-            available_copies=5,
-            author_id=2,
-            genre_id=1
+            title = "The Hero of Ages",
+            isbn = "978-0-7653-5613-1",
+            available_copies = 5,
+            author_id = 2,
+            genre_id = 1
         ),
         Book(
-            title="The Way of Kings",
-            isbn="978-0-7653-2635-5",
-            available_copies=6,
-            author_id=2,
-            genre_id=1
+            title = "The Way of Kings",
+            isbn = "978-0-7653-2635-5",
+            available_copies = 6,
+            author_id = 2,
+            genre_id = 1
         ),
         Book(
             title = "Words Of Radiance",
@@ -91,18 +91,18 @@ def seed_tables():
             genre_id = 1
         ),
          Book(
-            title="Oathbringer",
-            isbn="978-0-7653-2637-9",
-            available_copies=4,
-            author_id=2,
-            genre_id=1
+            title = "Oathbringer",
+            isbn = "978-0-7653-2637-9",
+            available_copies = 4,
+            author_id = 2,
+            genre_id = 1
         ),
         Book(
-            title="Rhythm of War",
-            isbn="978-0-7653-2638-6",
-            available_copies=3,
-            author_id=2,
-            genre_id=1
+            title = "Rhythm of War",
+            isbn = "978-0-7653-2638-6",
+            available_copies = 3,
+            author_id = 2,
+            genre_id = 1
         ),
         Book(
             title = "Assassin's Apprentice",
@@ -154,18 +154,18 @@ def seed_tables():
             genre_id = 5
         ),
         Book(
-            title="Fourth Wing",
-            isbn="978-0-346-47568-8",
-            available_copies=7,
-            author_id=7,  
-            genre_id=2
+            title = "Fourth Wing",
+            isbn = "978-0-346-47568-8",
+            available_copies = 7,
+            author_id = 7,  
+            genre_id = 2
         ),
         Book(
-            title="Iron Flame",
-            isbn="978-0-346-47569-5",
-            available_copies=6,
-            author_id=7,
-            genre_id=2
+            title = "Iron Flame",
+            isbn = "978-0-346-47569-5",
+            available_copies = 6,
+            author_id = 7,
+            genre_id = 2
         ),
         Book(
             title = "The Hunger Of The Gods",
@@ -196,11 +196,11 @@ def seed_tables():
             genre_id = 1
         ),
         Book(
-            title="Harry Potter and the Prisoner of Azkaban",
-            isbn="978-0-7475-4215-3",
-            available_copies=8,
-            author_id=9,
-            genre_id=1
+            title = "Harry Potter and the Prisoner of Azkaban",
+            isbn = "978-0-7475-4215-3",
+            available_copies = 8,
+            author_id = 9,
+            genre_id = 1
         ),
     ]
     

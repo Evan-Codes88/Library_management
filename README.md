@@ -9,6 +9,7 @@ A simple but robust API used to manage a Library's operations. This includes boo
 - [Features](#features)
 - [System Requirements](#system-requirements)
 - [Installation](#installation)
+  - [How to Clone the Repository](#How-to-Clone-the-Repository)
   - [Setting up the Virtual Environment (venv)](#setting-up-the-virtual-environment-venv)
   - [Activating the Virtual Environment](#activating-the-virtual-environment)
   - [Installing the Required Packages](#installing-the-required-packages)
@@ -57,6 +58,36 @@ This Library Management System (LMS) is designed to simplify the administrative 
 
 
 ## **Installation**
+<br>
+
+## How to Clone the Repository
+
+To clone the Library Management repository to your local machine, follow the steps below:
+
+### Steps to Clone
+
+1. **Open a Terminal or Command Prompt**  
+   Open your terminal, command prompt, or any CLI tool you use for development.
+
+2. **Navigate to the Directory Where You Want to Clone the Repository**  
+   Use the `cd` command to navigate to your desired folder. For example:
+   ```cd path/to/your/directory```
+
+3. **Clone The Repository**
+  Run the following command to clone the repository:
+  ```git clone https://github.com/Evan-Codes88/Library_management.git```
+
+4. **Navigate To The Cloned Repository**
+  Once the cloning process is complete, navigate into the cloned repository folder:
+  ```cd Library_management```
+
+5. **Switch To The Main Branch**
+  Ensure you are on the main branch:
+  ```git checkout main```
+
+6. **Open The Project In Your Code Editor**
+  If you're using Visual Studio Code, you can open the project by running:
+  ```code .```
 
 ### **Setting up the Virtual Environment (venv)**
 
@@ -82,8 +113,6 @@ python -m venv venv
   ```bash
   source venv/bin/activate
   ```
-
-
 
 ### Installing the Required Packages
 
@@ -323,6 +352,21 @@ Nevertheless, your readme is comprehensive and easy to navigate with the table o
   - My relationship between author and book stayed the same as a book cannot exist without an author and an author cannot exist without writing a book.
 
   - Expanded on the normalization within my README.md
+
+  - Added instructions on how to clone repository.
+
+***Justification***
+
+  - I decided to keep the relationship mandatory for both entities because it reflects the logical constraints of your domain. A book inherently requires an author for it to exist, as authorship is fundamental to the concept of a book. Conversely, in your design, an author must have written at least one book, emphasizing that only authors with published works are relevant to your system.
+
+  This decision aligns with a stricter interpretation of business rules, ensuring that every author in your database is actively tied to a book, which may simplify queries and avoid unnecessary null values. However, you I was open to critique, which is why providing an explanation in the README was important. Adding this rationale clarified my choice to users, preventing misunderstandings and showing thoughtful database modeling.
+
+  - While my original explanation of normalization was sufficient, expanding on it with a practical example made the concept more accessible to beginners. Database normalization can be abstract, so illustrating how it reduces redundancy (e.g., avoiding repeated author information in the Book table) grounds the concept in reality.
+
+  This improvement helps users of varying skill levels, aligning with a user-centered approach. It also demonstrates my commitment to making my README a learning resource, not just a technical document, which adds value to my project.
+
+  - Adding repository cloning instructions ensures my README supports users who may be new to working with version control systems like Git. By guiding them through the process of setting up the project from scratch, I lower the barrier to entry for anyone interested in using or contributing to my project. This step enhances accessibility and aligns with best practices for open-source projects, further reflecting the inclusive nature of my documentation.
+
 
 <br>
 

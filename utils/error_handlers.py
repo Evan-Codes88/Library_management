@@ -3,6 +3,9 @@ from marshmallow import ValidationError, validate
 from sqlalchemy.exc import IntegrityError
 from psycopg2 import errorcodes
 
+from init import db
+
+
 
 def format_error_response(message, errors=None, status_code=400):
     """Formats error responses consistently."""
@@ -47,6 +50,7 @@ def handle_integrity_error(err: IntegrityError):
 
 
 def validate_isbn(value):
+    from models.book import Book
     try:
         # Define strict regex patterns for ISBN-10 and ISBN-13
         isbn_10_pattern = r"^\d{1,5}-\d{1,7}-\d{1,6}-\d{1,3}[\dX]$"  # ISBN-10 pattern
@@ -77,7 +81,13 @@ def validate_isbn(value):
                 error_message += " For ISBN-13, ensure the correct number of digits and the optional hyphens."
 
             raise ValidationError({"isbn": [error_message]})
+        
+        # Check if the ISBN already exists in the system (assuming the Book model is already defined)
+        existing_book = db.session.query(Book).filter_by(isbn=value).first()
+
+        if existing_book:
+            raise ValidationError({"isbn": ["This ISBN already exists in the system."]})
 
     except ValidationError as e:
-        # Handle validation errors related to ISBN format
+        # Handle validation errors related to ISBN format or uniqueness
         raise e

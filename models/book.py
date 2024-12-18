@@ -28,8 +28,13 @@ class BookSchema(ma.Schema):
         validate = validate_isbn
     )
 
+    author_name = fields.Method("get_author_name")
+
+    def get_author_name(self, obj):
+        return obj.author.name if obj.author else None
+
     class Meta:
-        fields = ("id", "title", "isbn", "available_copies", "author_id", "genre_id")
+        fields = ("id", "title", "isbn", "available_copies", "author_id", "author_name", "genre_id")
 
 book_schema = BookSchema()
 books_schema = BookSchema(many = True)

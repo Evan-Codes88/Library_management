@@ -24,6 +24,14 @@ class LoanSchema(ma.Schema):
     return_date = fields.Date(
         validate = validate_dates
     )
-            
+    
+    member_name = fields.Method("get_member_name")
+
+    def get_member_name(self, obj):
+        return obj.member.name if obj.member else None
+
     class Meta:
-        fields = ("id", "borrow_date", "return_date", "book_id", "member_id")
+        fields = ("id", "borrow_date", "return_date", "book_id", "member_id", "member_name")
+
+loan_schema = LoanSchema()
+loans_schema = LoanSchema(many = True)

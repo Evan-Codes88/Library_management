@@ -225,6 +225,12 @@ def seed_tables():
             book_id = 18,
             member_id = 8
         ),
+        Loan(
+            borrow_date = date(2024, 9, 12),
+            return_date = date(2025, 5, 1),
+            book_id = 5,
+            member_id = 8
+        )
     ]
     db.session.add_all(loans)
 

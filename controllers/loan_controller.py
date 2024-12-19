@@ -2,7 +2,6 @@ from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from psycopg2 import errorcodes
 from marshmallow import ValidationError
-from datetime import datetime
 
 from init import db
 from models.loan import Loan, loan_schema, loans_schema

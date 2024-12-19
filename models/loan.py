@@ -1,6 +1,5 @@
-from marshmallow import fields, ValidationError
+from marshmallow import fields, ValidationError, validates_schema
 from datetime import date
-
 
 from init import db, ma
 
@@ -25,21 +24,21 @@ class Loan(db.Model):
     """
     __tablename__ = "loans"
 
-    id = db.Column(db.Integer, primary_key = True)
-    borrow_date = db.Column(db.Date, nullable = False)
-    return_date = db.Column(db.Date, nullable = False)
-    book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable = False)
-    member_id = db.Column(db.Integer, db.ForeignKey("members.id") , nullable = False)
+    id = db.Column(db.Integer, primary_key=True)
+    borrow_date = db.Column(db.Date, nullable=False)
+    return_date = db.Column(db.Date, nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable=False)
+    member_id = db.Column(db.Integer, db.ForeignKey("members.id"), nullable=False)
 
-     # Relationship with the Book model, indicating the book being loaned.
-    book = db.relationship("Book", back_populates = "loans")
+    # Relationship with the Book model, indicating the book being loaned.
+    book = db.relationship("Book", back_populates="loans")
     # Relationship with the Member model, indicating the member who borrowed the book.
-    member = db.relationship("Member", back_populates = "loans")
-   
-   # Ensures that a book can only be loaned to a member once at a time.
+    member = db.relationship("Member", back_populates="loans")
+
+    # Ensures that a book can only be loaned to a member once at a time.
     __table_args__ = (db.UniqueConstraint('book_id', 'member_id', name='uni_book_member'),)
 
-class LoanSchema(ma.Schema):
+class LoanSchema(ma.SQLAlchemyAutoSchema):
     """
     Marshmallow schema for serialising and deserialising Loan objects.
 
@@ -63,7 +62,8 @@ class LoanSchema(ma.Schema):
     MAX_LOAN_DURATION = 30  # Maximum loan duration in days
     MAX_BORROW_LIMIT = 5    # Maximum number of books a member can borrow at a time
 
-    def validate_dates_and_limits(self, data):
+    @validates_schema
+    def validate_dates_and_limits(self, data, **kwargs):
         """
         Validates the loan data provided during creation or update.
 
@@ -71,10 +71,10 @@ class LoanSchema(ma.Schema):
         1. That the return date is not earlier than the borrow date.
         2. That the loan duration does not exceed the maximum allowed duration.
         3. That the member has not exceeded the maximum borrowing limit for active loans.
-
+        
         Args:
             data (dict): The loan data to validate. Must include 'borrow_date', 'return_date', and 'member_id'.
-
+        
         Raises:
             ValidationError: If any validation checks fail. The error message details the specific issue.
         """
@@ -86,13 +86,13 @@ class LoanSchema(ma.Schema):
         if borrow_date and return_date:
             if return_date < borrow_date:
                 raise ValidationError(
-                    {"return_date": "Return date must be on or after the borrow date."}
+                    {"return_date": ["Return date must be on or after the borrow date."]}
                 )
             # Validate loan duration
             loan_duration = (return_date - borrow_date).days
             if loan_duration > self.MAX_LOAN_DURATION:
                 raise ValidationError(
-                    {"return_date": f"Loan duration cannot exceed {self.MAX_LOAN_DURATION} days."}
+                    {"return_date": [f"Loan duration cannot exceed {self.MAX_LOAN_DURATION} days."]}
                 )
 
         # Validate maximum borrowing limits per member
@@ -104,7 +104,7 @@ class LoanSchema(ma.Schema):
 
             if active_loans_count >= self.MAX_BORROW_LIMIT:
                 raise ValidationError(
-                    {"member_id": f"Member cannot have more than {self.MAX_BORROW_LIMIT} active loans."}
+                    {"member_id": [f"Member cannot have more than {self.MAX_BORROW_LIMIT} active loans."]}
                 )
 
     def get_member_name(self, obj):

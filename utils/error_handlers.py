@@ -17,7 +17,13 @@ def format_error_response(message, errors=None, status_code=400):
 
 
 def handle_validation_error(err: ValidationError):
-    errors = [message for messages in err.messages.values()for message in messages]
+    errors = []
+    for field, messages in err.messages.items():
+        # Join the messages into a single string without splitting into characters
+        if isinstance(messages, list):
+            errors.append(" ".join(messages))  # Join if it's a list of messages
+        else:
+            errors.append(messages)  # Just append the message if it's already a string
     return format_error_response("Validation failed", errors, 400)
 
 

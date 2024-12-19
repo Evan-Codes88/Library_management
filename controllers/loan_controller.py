@@ -249,3 +249,25 @@ def update_loan_by_member(member_id):
 
     else:
         return {"message": f"Member with id {member_id} does not exist"}, 404
+    
+def return_book(loan_id):
+    loan = Loan.query.get(loan_id)
+    if loan:
+        loan.status = "returned"  # Mark the loan as returned
+        book = loan.book
+        book.available_copies += 1  # Increment available copies of the book
+        db.session.commit()
+        return {"message": "Book returned successfully."}
+    else:
+        return {"error": "Loan not found."}
+
+@loans_bp.route("/return/<int:loan_id>", methods=['POST']) 
+def return_book_route(loan_id):
+    """
+    Endpoint to return a book.
+    """
+    result = return_book(loan_id)
+    if "error" in result:
+        return {"message": "Loan not found"}, 404
+    else:
+        return {"message": "Book successfully returned"}, 200

@@ -411,6 +411,7 @@ Lastly, refining the membership_number error message to emphasise its requiremen
 - Adding an apostrophe (') or refining validation for the name field clarifies the requirement to the user. Proper error messages improve usability by explicitly stating what input is acceptable. For example, ensuring names are alphabetic and meet other constraints (e.g., length or special character restrictions) helps users correct their input more efficiently. Improved error messages also make the system feel polished and user-friendly.
 
 <br>
+
 Who: Earvin\
 When: 19/12/24\
 What Document: error_handlers.py\

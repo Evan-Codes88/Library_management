@@ -450,6 +450,28 @@ Upon reviewing your book.py file for your Library Management System, I could not
 ***Justification:***
 - The decision to add docstrings to the Book.py file was made to improve code readability and maintainability, especially for future developers who may be unfamiliar with the specific terms used in a library management system.
 
+<br>
+
+Who: Tilley\
+When: 19/12/2024\
+What Document: Loan.py\
+Feedback:
+<br>
+Hey Evan I took a look at your code for loans model and schema.
+
+Your code is well structured, the code comments are very detailed and the relationships between the tables are very clear and the unique constraint is implemented perfectly. well done!
+
+Suggestions for improvement: 
+if you have time maybe you can add validation for loan duration and maximum borrowing limits per member
+
+***Action Taken:***
+- Validation added for loan duration (30 Days) and maximum borrowing limits (5 books).
+
+***Justification:***
+Adding these validations not only improves the fairness and reliability of the system but also prevents potential misuse and ensures smooth operations. It's a proactive step in managing resources effectively while offering an optimal experience for all users. Therefore, implementing these checks enhances both user satisfaction and system efficiency.
+
+<br>
+
 ## Credits
 
 Created by Evan Meehan.  

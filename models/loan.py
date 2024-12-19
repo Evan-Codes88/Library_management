@@ -2,9 +2,42 @@ from marshmallow import fields, ValidationError
 from datetime import date
 
 
-from init import ma
-from models.loan import Loan
+from init import db, ma
 
+class Loan(db.Model):
+    """
+    Represents a loan record in the library system.
+
+    Attributes:
+        id (int): The unique identifier for the loan.
+        borrow_date (date): The date the book was borrowed.
+        return_date (date): The date the book is due to be returned.
+        book_id (int): The unique identifier for the book being loaned.
+        member_id (int): The unique identifier for the member borrowing the book.
+    
+    Relationships:
+        book (Book): A relationship with the Book model, indicating which book is being loaned.
+        member (Member): A relationship with the Member model, indicating which member borrowed the book.
+    
+    Constraints:
+        A unique constraint is enforced on the combination of `book_id` and `member_id`, ensuring that a specific book 
+        can only be loaned to a member once at a time.
+    """
+    __tablename__ = "loans"
+
+    id = db.Column(db.Integer, primary_key = True)
+    borrow_date = db.Column(db.Date, nullable = False)
+    return_date = db.Column(db.Date, nullable = False)
+    book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable = False)
+    member_id = db.Column(db.Integer, db.ForeignKey("members.id") , nullable = False)
+
+     # Relationship with the Book model, indicating the book being loaned.
+    book = db.relationship("Book", back_populates = "loans")
+    # Relationship with the Member model, indicating the member who borrowed the book.
+    member = db.relationship("Member", back_populates = "loans")
+   
+   # Ensures that a book can only be loaned to a member once at a time.
+    __table_args__ = (db.UniqueConstraint('book_id', 'member_id', name='uni_book_member'),)
 
 class LoanSchema(ma.Schema):
     """

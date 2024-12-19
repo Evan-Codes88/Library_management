@@ -37,7 +37,7 @@ This Library Management System (LMS) is designed to simplify the administrative 
 ## **Web Server Deployment:**
 ***URL:*** https://evan-library-management-system.onrender.com
 <br>
-This link will take you to the live deployment of the Library Management System (LMS) API hosted on Render. You can interact with the API through various HTTP requests (GET, POST, PUT, PATCH, DELETE) to manage library resources, such as books, authors, genres, loans and members.
+This link is used for the live deployment of the Library Management System (LMS) API hosted on Render. You can interact with the API through various HTTP requests (GET, POST, PUT, PATCH, DELETE) to manage library resources, such as books, authors, genres, loans and members.
 <br>
 For example:
     https://evan-library-management-system.onrender.com/books

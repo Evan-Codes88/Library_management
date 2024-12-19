@@ -425,6 +425,31 @@ Feedback:
 ***Action Taken:***
 No action needed as this is all positive feedback.
 
+<br>
+
+Who: Tanya\
+When: 19/12/24\
+What Document: Book.py\
+Feedback:
+<br>
+Upon reviewing your book.py file for your Library Management System, I could not find any errors. My only suggestion and feedback would be to add docstrings to assist future developers understand the library terms a bit better, especially if they are not familiar with books or library systems. For example, for your book model class, you could include docstrings such as: 
+
+        id (int): The unique identifier for the book.
+        title (str): The title of the book.
+        isbn (str): The International Standard Book Number (ISBN) of the book.
+        available_copies (int): The number of copies currently available in the library.
+        author_id (int): The ID of the author, referencing the authors table.
+        genre_id (int): The ID of the genre, referencing the genres table.
+        author (Author): The associated author object.
+        genre (Genre): The associated genre object.
+        loans (list): A list of loan records associated with the book. 
+
+***Action Taken:***
+- Docstrings added to Book.py to further explain the model.
+
+***Justification:***
+- The decision to add docstrings to the Book.py file was made to improve code readability and maintainability, especially for future developers who may be unfamiliar with the specific terms used in a library management system.
+
 ## Credits
 
 Created by Evan Meehan.  

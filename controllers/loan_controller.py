@@ -16,18 +16,38 @@ loans_bp = Blueprint("loans", __name__, url_prefix = "/loans")
 # Read All - /loans - GET
 @loans_bp.route("/")
 def get_loans():
-    stmt = db.select(Loan).order_by(Loan.id)
-    loans_list = db.session.scalars(stmt)
-    return loans_schema.dump(loans_list)
+    # Query for all loans
+    all_loans_stmt = db.select(Loan).order_by(Loan.id)
+    all_loans_list = db.session.scalars(all_loans_stmt).all()
 
-# Read All - Member_id - /loans/member_id - GET
-"""Read all Loans attached to a Member"""
-@loans_bp.route("/member/<int:member_id>")
+    # Query for active loans (not returned)
+    active_loans_stmt = db.select(Loan).filter(Loan.status != "returned").order_by(Loan.id)
+    active_loans_list = db.session.scalars(active_loans_stmt).all()
+
+    # Prepare the response with both all loans and active loans
+    response = {
+        "all_loans": loans_schema.dump(all_loans_list),  # All loans serialized
+        "active_loans": loans_schema.dump(active_loans_list)  # Active loans serialized
+    }
+
+    return response, 200
+
+@loans_bp.route("/member/<int:member_id>", methods=["GET"])
 def get_loan_from_member(member_id):
-    stmt = db.select(Loan).filter_by(member_id = member_id)
-    loans = db.session.scalars(stmt)
-    if loans:
-        return loans_schema.dump(loans)
+    # Query for all loans for the member
+    all_loans_stmt = db.select(Loan).filter(Loan.member_id == member_id).order_by(Loan.id)
+    all_loans_list = db.session.scalars(all_loans_stmt).all()
+
+    # Query for active loans for the member (not returned)
+    active_loans_stmt = db.select(Loan).filter(Loan.member_id == member_id, Loan.status != "returned").order_by(Loan.id)
+    active_loans_list = db.session.scalars(active_loans_stmt).all()
+
+    if all_loans_list or active_loans_list:
+        response = {
+            "all_loans": loans_schema.dump(all_loans_list),  # All loans for the member
+            "active_loans": loans_schema.dump(active_loans_list)  # Active loans for the member
+        }
+        return response, 200
     else:
         return {"message": f"Member with id {member_id} does not have any loans"}, 404
 
@@ -253,7 +273,12 @@ def update_loan_by_member(member_id):
 def return_book(loan_id):
     loan = Loan.query.get(loan_id)
     if loan:
-        loan.status = "returned"  # Mark the loan as returned
+        # Check if the loan is already returned
+        if loan.status == "returned":
+            return {"error": "This book has already been returned."}
+        
+        # Mark the loan as returned
+        loan.status = "returned"  # Mark as returned
         book = loan.book
         book.available_copies += 1  # Increment available copies of the book
         db.session.commit()

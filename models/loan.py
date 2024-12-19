@@ -80,7 +80,7 @@ class LoanSchema(ma.SQLAlchemyAutoSchema):
         return obj.member.name if obj.member else None
 
     class Meta:
-        fields = ("id", "borrow_date", "return_date", "book_id", "member_id", "member_name")
+        fields = ("id", "borrow_date", "return_date", "status", "book_id", "member_id", "member_name")
 
 
 

@@ -402,7 +402,7 @@ Lastly, refining the membership_number error message to emphasise its requiremen
 ***Action Taken:***
 - Email changed to be not-null
 - Code Comment addressing why January 1st 2001 is the minimum date for my validation
-- ' added to my validation in name
+- Apostrophe's added to my validation in name
 
 ***Justification***
 - The email field is critical for identifying and communicating with members, so making it non-null ensures the data's completeness and reliability. Previously, while the schema enforced validation on email format, the database allowed null values. This discrepancy could lead to inconsistent or incomplete data being stored. By setting email to NOT NULL, you ensure that both the schema and database align, preventing situations where invalid data bypasses validation and causing issues downstream.

@@ -401,7 +401,18 @@ Lastly, refining the membership_number error message to emphasise its requiremen
 - Adding an apostrophe (') or refining validation for the name field clarifies the requirement to the user. Proper error messages improve usability by explicitly stating what input is acceptable. For example, ensuring names are alphabetic and meet other constraints (e.g., length or special character restrictions) helps users correct their input more efficiently. Improved error messages also make the system feel polished and user-friendly.
 
 <br>
+Who: Earvin\
+When: 19/12/24\
+What Document: error_handlers.py\
+Feedback:
+<br>
+- Formatting the errors into functions does well to keep code DRY. Similar errors can just be called.
+- Furthermore you have two types of Integrity errors in one function (unique and not null), and for unique violations put all the possible instances (name, email , ect) in an if/elif statement, this makes all the possible errors that can occur very clear and once again makes the code DRY
+- Validation for your isbn is very thorough to make sure it is unique, has enough characters and hyphens.
+- Code comments explain all errors and justifications for errors very clearly.
 
+***Action Taken:***
+No action needed as this is all positive feedback.
 
 ## Credits
 

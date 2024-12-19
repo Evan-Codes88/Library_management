@@ -135,7 +135,8 @@ pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Fl
 - **Flask:** 3.1.0  
 - **flask-marshmallow:** 1.2.1  
 - **Flask-SQLAlchemy:** 3.1.1  
-- **greenlet:** 3.1.1  
+- **greenlet:** 3.1.1
+- **gunicorn:** 23.0.0
 - **importlib_metadata:** 8.5.0  
 - **itsdangerous:** 2.2.0  
 - **Jinja2:** 3.1.4  

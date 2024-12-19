@@ -466,6 +466,7 @@ if you have time maybe you can add validation for loan duration and maximum borr
 
 ***Action Taken:***
 - Validation added for loan duration (30 Days) and maximum borrowing limits (5 books).
+- I also added a return route and active/returned status for books.
 
 ***Justification:***
 Adding these validations not only improves the fairness and reliability of the system but also prevents potential misuse and ensures smooth operations. It's a proactive step in managing resources effectively while offering an optimal experience for all users. Therefore, implementing these checks enhances both user satisfaction and system efficiency.

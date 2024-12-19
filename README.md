@@ -303,7 +303,7 @@ For the Library Management System, a **relational database** is the optimal choi
 
 ## **Entity Relationship Diagram:**
 
-![ERD IMAGE](erd.png)
+
 
 
 ---

@@ -33,7 +33,7 @@ def get_genre(genre_id):
 def create_genre():
     try:
         body_data = genre_schema.load(request.get_json())
-        body_data["genre_name"] = body_data["genre_name"].strip()
+        body_data["genre_name"] = validate_and_strip_field(body_data, "genre_name")
         # Ensure name is not empty after stripping
         if not body_data["genre_name"]:
             return {"message": "Genre name cannot be empty"}, 400

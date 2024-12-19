@@ -33,7 +33,7 @@ def get_author(author_id):
 def create_author():
     try:
         body_data = author_schema.load(request.get_json())
-        body_data["name"] = body_data["name"].strip()
+        body_data["name"] = validate_and_strip_field(body_data, "name")
         # Ensure name is not empty after stripping
         if not body_data["name"]:
             return {"message": "Name cannot be empty"}, 400

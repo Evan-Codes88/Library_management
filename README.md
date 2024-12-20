@@ -205,7 +205,7 @@ You can interact with the API through various HTTP requests (GET, POST, PUT, PAT
 
 - GET: Retrieve Resources
 
-  - Example: Fetch All Books:
+  - Example - Fetch All Books:
     ```
     curl -X GET https://evan-library-management-system.onrender.com/books
     ```
@@ -216,14 +216,128 @@ You can interact with the API through various HTTP requests (GET, POST, PUT, PAT
         {
           "id": 1,
           "title": "Book Title",
-          "author": "Author Name",
-          "genre": "Genre",
-          "status": "available"
+          "isbn": "ISBN NO.",
+          "available_copies": "Number of copies available",
+          "author_id": "Author ID",
+          "genre_id": "Genre ID"
         }
       ]
       ```
+<br>
 
+- POST: Create A New Resource (This following command is done within your terminal or command prompt)
 
+  - Example - Create New Book:
+    ```
+    curl -X POST POST https://evan-library-management-system.onrender.com/books \
+    -H "Content-Type: application/json" \
+    -d '{"title": "New Book", "isbn": "isbn number", "available_copies": "Number of copies available", "author_id": "author id", "genre_id": "genre id"}'
+    ```
+
+    ***This command:***
+
+    - POST: Specifies the HTTP method to create a new resource.
+    - URL: Points to your API endpoint (/books).
+    - Headers: Includes the Content-Type: application/json to tell the
+    server the request is in JSON format.
+    - Data: Provides the JSON body of the request, which includes the book's details.
+    
+    ***Execute the Command:***
+      Press Enter to execute it.
+
+    Expected Response:
+      ```
+      {
+        "message": "Book added successfully",
+        "book": {
+          "id": 2,
+          "title": "New Book",
+          "isbn": "ISBN NO.",
+          "available_copies": "Number of copies available",
+          "author_id": "Author ID",
+          "genre_id": "Genre ID"
+        }
+      }
+      ```
+
+- PATCH: Partially Update An Existing Resource
+
+  - Example - Update A Book's Name:
+    ```
+    curl -x PATCH https://evan-library-management-system.onrender.com/books/1 \
+    -H "Content-Type: application/json" \
+    -d '{"title": "Book 1 Updated"}'
+    ```
+    ***This command:***
+
+    - PATCH: Specifies the HTTP method to partially update a new resource.
+    - URL: Points to your API endpoint (/books/1).
+    - Headers: Includes the Content-Type: application/json to tell the
+    server the request is in JSON format.
+    - Data: Provides the JSON body of the request, which includes the book's details used to update.
+
+    Expected Response:
+    ```
+    {
+      "message": "Book updated successfully",
+      "book": {
+        "id": 1,
+        "title": "Updated Title",
+        "isbn": "ISBN NO",
+        "available_copies": "Number of copies available",
+        "author_id": "Author ID",
+        "genre_id": "Genre ID"
+      }
+    }
+    ```
+
+- PUT: Update An Existing Resource (All fields required)
+
+  - Example - Update A Book's Details:
+    ```
+    curl -x PUT https://evan-library-management-system.onrender.com/books/1 \
+    -H "Content-Type: application/json" \
+    -d '{"title": "Updated Title", "isbn": "Updated ISBN", "available_copies": "Updated Copies", "author_id": "Updated author id", "genre_id": "Updated genre id"}'
+    ```
+    ***This command:***
+
+    - PUT: Specifies the HTTP method to completely update a new resource.
+    - URL: Points to your API endpoint (/books/1).
+    - Headers: Includes the Content-Type: application/json to tell the
+    server the request is in JSON format.
+    - Data: Provides the JSON body of the request, which includes the book's details used to update.
+
+    Expected Response:
+    ```
+    {
+      "message": "Book updated successfully",
+      "book": {
+        "id": 1,
+        "title": "Updated Title",
+        "isbn": "Updated ISBN NO",
+        "available_copies": "Updated Number of copies available",
+        "author_id": "Updated Author ID",
+        "genre_id": "Updated Genre ID"
+      }
+    }
+    ```
+
+- DELETE: Remove A Resource
+
+  - Example - Delete A Book:
+    ```
+    curl -X DELETE https://evan-library-management-system.onrender.com/books/1
+    ```
+
+    Expected Response:
+    ```
+    {
+      "message": "Book deleted successfully"
+    }
+    ```
+<br>
+
+---
 
 ## Licensing and Legal/Ethical Impacts
 

@@ -1,4 +1,5 @@
 from marshmallow import fields, validate
+from sqlalchemy import Text
 
 from init import db, ma
 from models.book import books_schema
@@ -18,7 +19,7 @@ class Genre(db.Model):
     __tablename__ = "genre"
     id = db.Column(db.Integer, primary_key = True)
     genre_name = db.Column(db.String(100), nullable = False, unique = True)
-    genre_description = db.Column(db.String(250))
+    genre_description = db.Column(Text)
 
     # Relationship with the Book model, indicating which books belong to this genre.
     books = db.relationship("Book", back_populates = "genre", cascade = "all, delete-orphan")
@@ -46,7 +47,7 @@ class GenreSchema(ma.Schema):
         """
         Specifies the fields to include when serialising the Genre object.
         """
-        fields = ("id", "genre_name", "books")
+        fields = ("id", "genre_name", "genre_description", "books")
 
 genre_schema = GenreSchema()
 genres_schema = GenreSchema(many = True)

@@ -25,7 +25,7 @@ class Loan(db.Model):
     # Unique constraint for the combination of book_id and member_id
     __table_args__ = (db.UniqueConstraint('book_id', 'member_id', name='uni_book_member'),)
 
-class LoanSchema(ma.SQLAlchemyAutoSchema):
+class LoanSchema(ma.Schema):
     borrow_date = fields.Date(required=True)
     return_date = fields.Date(required=True)
     member_name = fields.Method("get_member_name")

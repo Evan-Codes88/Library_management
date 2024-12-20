@@ -1,6 +1,7 @@
 from marshmallow import fields, validate
 
 from init import db, ma
+from models.book import books_schema
 
 class Genre(db.Model):
     """
@@ -17,6 +18,7 @@ class Genre(db.Model):
     __tablename__ = "genre"
     id = db.Column(db.Integer, primary_key = True)
     genre_name = db.Column(db.String(100), nullable = False, unique = True)
+    genre_description = db.Column(db.String(250))
 
     # Relationship with the Book model, indicating which books belong to this genre.
     books = db.relationship("Book", back_populates = "genre", cascade = "all, delete-orphan")
@@ -37,11 +39,14 @@ class GenreSchema(ma.Schema):
             validate.Regexp(r'^[A-Za-z\s]+$', error = "Genre Name can only contain letters and spaces.")
         ]
     )
+
+    books = fields.Nested(books_schema)
+
     class Meta:
         """
         Specifies the fields to include when serialising the Genre object.
         """
-        fields = ("id", "genre_name")
+        fields = ("id", "genre_name", "books")
 
 genre_schema = GenreSchema()
 genres_schema = GenreSchema(many = True)

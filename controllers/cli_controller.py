@@ -277,28 +277,36 @@ def seed_tables():
 
     genres = [
         Genre(
-            genre_name = "Fantasy"
+            genre_name = "Fantasy",
+            genre_description = "Fantasy literature transports readers to magical worlds filled with mythical creatures, enchanted lands, and epic quests. Characters often possess supernatural abilities, and the genre explores themes of heroism, good versus evil, and the triumph of hope. Popular elements include wizards, dragons, and powerful artifacts."
         ),
         Genre(
-            genre_name = "Romantasy"
+            genre_name = "Romantasy",
+            genre_description = "A blend of romance and fantasy, romantasy typically involves characters navigating relationships in a fantastical world. It combines the emotional depth and romantic themes of love stories with the intrigue and wonder of magical or mythical settings, often featuring enchanted beings or realms where the power of love transcends the ordinary."
         ),
         Genre(
-            genre_name = "Thriller"
+            genre_name = "Thriller",
+            genre_description = "Thriller novels are designed to keep readers on the edge of their seats with high-stakes action, suspense, and unexpected twists. Often involving a protagonist facing life-threatening situations, thrillers keep the tension high and the plot unpredictable, as characters race against time or sinister forces."
         ),
         Genre(
-            genre_name = "Romance"
+            genre_name = "Romance",
+            genre_description = "Romance stories focus on the development of a deep emotional and romantic connection between characters. These novels explore themes of love, relationships, and personal growth, often culminating in a satisfying and hopeful conclusion. They can take place in any setting, from everyday life to fantastical worlds."
         ),
         Genre(
-            genre_name = "Murder Mystery"
+            genre_name = "Murder Mystery",
+            genre_description = "Murder mystery novels center around the investigation of a crime, typically a murder, and the uncovering of clues to solve the case. These stories involve a detective or amateur sleuth piecing together evidence to expose the identity of the murderer, often with red herrings and unexpected turns along the way."
         ),
         Genre(
-            genre_name = "Horror"
+            genre_name = "Horror",
+            genre_description = "Horror literature seeks to evoke fear, dread, and unease in readers. It often features supernatural elements such as ghosts, monsters, or psychological terror, and explores dark themes like death, the unknown, and the macabre. Horror stories aim to confront the reader with unsettling and disturbing situations that test the limits of human endurance and sanity."
         ),
         Genre(
-            genre_name = "Adventure"
+            genre_name = "Adventure",
+            genre_description = "Adventure stories are filled with action, excitement, and exploration. The protagonist embarks on a journey, often through dangerous or uncharted territories, to discover new lands, solve mysteries, or overcome great challenges. The genre emphasizes bravery, survival, and the thrill of discovery."
         ),
         Genre(
-            genre_name = "Science Fiction"
+            genre_name = "Science Fiction",
+            genre_description = "Science fiction delves into speculative worlds where science and technology play central roles in shaping the future. It explores futuristic societies, space exploration, time travel, artificial intelligence, and alien life. Sci-fi often raises questions about humanity's place in the universe and the ethical dilemmas posed by scientific advancements."
         ),
     ]
     db.session.add_all(genres)

@@ -712,6 +712,37 @@ Adding these validations not only improves the fairness and reliability of the s
 
 <br>
 
+Who: Ben Gorman
+When: 20/12/24
+What Document: genre.py
+Feedback:
+<br>
+
+***What was done well***
+- Strucuture is clear and precise
+- Validation is extensive
+- Constraints are consistent
+- Integrity errors are present for all constraints
+
+***Actionable Feedback***
+- Env and .flaskenv are hidden on github to protect sensitive information. When doing so, it's generally convention to have a .env.sample file.
+
+- The genre entity doesn't do anything except include a name. Unless functionality for this field is expanded it might as well just exist as a line within the book file. To expand it, I reccomend doing a nested field in genre so that when a user searches for it, they may see other information such as book or author.
+
+***Action Taken:***
+- Sample env file created
+- Nested field used for the Genre entity to display related books
+- Added Genre Description
+
+***Justification:***
+- Creating a .env.sample file ensures that collaborators or anyone else working on the project can see which environment variables are needed without revealing any sensitive data. This approach follows best practices for security and collaboration.
+-  By expanding the Genre entity into a nested field, you enhance its utility. Now, when users search for a specific genre, they can also access related books and possibly authors, enriching the data structure and user experience. This is a step towards making the Genre entity more meaningful and informative within the application.
+- Providing a description for each genre makes it more informative and user-friendly. It gives context to the genre, helping users understand the type of books associated with it. 
+
+<br>
+
+---
+
 ## Credits
 
 Created by Evan Meehan.  

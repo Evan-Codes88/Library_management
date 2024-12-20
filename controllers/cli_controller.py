@@ -349,25 +349,25 @@ def seed_tables():
     loans = [
         Loan(
             borrow_date = date(2024, 1, 12),
-            return_date = date(2024, 12, 21),
+            return_date = date(2024, 2, 11),
             book_id = 1,
             member_id = 1
         ),
             Loan(
             borrow_date = date(2024, 12, 12),
-            return_date = date(2024, 12, 30),
+            return_date = date(2025, 1, 11),
             book_id = 6,
             member_id = 3
         ),
             Loan(
             borrow_date = date(2024, 9, 12),
-            return_date = date(2025, 5, 1),
+            return_date = date(2025, 10, 12),
             book_id = 18,
             member_id = 8
         ),
         Loan(
             borrow_date = date(2024, 9, 12),
-            return_date = date(2025, 5, 1),
+            return_date = date(2025, 10, 1),
             book_id = 5,
             member_id = 8
         )

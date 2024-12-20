@@ -16,7 +16,8 @@ A simple but robust API used to manage a Library's operations. This includes boo
   - [Required Packages](#required-packages)
 - [Prerequisites](#Prerequisites)
   - [How to Run the API Locally](#how-to-run-the-api-locally)
-  - [Web Server Deployment](#Web-Server-Deployment)
+- [Web Server Deployment](#Web-Server-Deployment)
+  - [HTTP Status Codes](#http-status-codes)
 - [Licensing and Legal/Ethical Impacts](#licensing-and-legalethical-impacts)
    - [License Overview](#license-overview)
    - [Full MIT License Text](#full-mit-license-text)
@@ -168,6 +169,7 @@ pip install blinker==1.9.0 click==8.1.7 Flask==3.1.0 flask-marshmallow==1.2.1 Fl
     ```bash
     DATABASE_URI=postgresql://username:password@localhost:5432/lms_api
     ```
+    <br>
     Replace username, password, and localhost with your postgreSQL credentials.
 
 ### **Initialize the Database Tables**
@@ -176,7 +178,7 @@ Use Flask CLI commands to create the necessary tables:
 
 ```bash
 flask db create # This creates your entity tables
-flask db seed # This seeds alll of the data
+flask db seed # This seeds all of the sample data
 flask db drop # This will drop all tables and relations
 ```
 
@@ -191,7 +193,90 @@ flask db drop # This will drop all tables and relations
 
 ---
 
-## **Web Server Deployment:**
+## Testing The API Locally With Insomnia
+
+Insomnia is a powerful REST client that allows you to test your API endpoints with a user-friendly interface. Here's how to set up and use Insomnia to test your Library Management System (LMS) API locally.
+
+**1. Install Insomnia**
+If you haven't already, download and install Insomnia from the official website:
+[Download Insomnia](#https://insomnia.rest/download)
+<br>
+
+**2. Set Up Insomnia**
+Once Insomnia is installed, follow these steps to set it up for testing your API locally:
+
+- ***Open Insomnia:*** Launch the Insomnia application. (Click 'Use Local Scratchpad')
+- ***Create a New Request:***
+  - Click on the New Request button.
+  - Give your request a name (e.g., "Get All Books").
+  - Select the appropriate HTTP method (e.g., GET, POST, PATCH, PUT, DELETE) from the dropdown menu next to the request name.
+- **Configure API Requests:**
+  For each type of API request (GET, POST, PUT, PATCH, DELETE), follow the instructions below to configure them in Insomnia.
+  - **GET:**
+    For a GET request to fetch all books from the API:
+    - In the request setup window, set the method to GET.
+    - Enter the URL for the request:
+      http://localhost:8080/books
+    - Click Send.
+    - This will display all of the books within the database in JSON format.
+    <br>
+  - **GET from ID:**
+    For a GET from ID request to fetch one book from the API:
+    - In the request setup window, set the method to GET.
+    - Enter the URL for the request:
+      http://localhost:8080/books/1 (Use ID of book you want to see)
+    - Click Send.
+    - This will display the book in JSON format.
+  - **POST:**
+    To create a new book with a POST request:
+    - Set the method to POST.
+    - Enter the URL:
+      http://localhost:8080/books
+    - Go to the Body tab and select JSON.
+    - Add the JSON data for the new book
+    - Click Send
+  - **PUT:**
+    To update an existing book with a PUT request:
+    - Set the method to PUT.
+    - Enter the URL with the book ID:
+      http://localhost:8080/books/1
+    - Go to the Body tab and select JSON.
+    - Add the JSON data to update the book details (All details required for PUT method)
+    - Click Send
+  - **PATCH:**
+    To update a book's title using a PATCH request:
+    - Set the method to PATCH.
+    - Enter the URL with the book ID:
+      http://localhost:8080/books/1
+    - Go to the Body tab and select JSON.
+    - Add the JSON data to update the book's title
+    - Click Send
+  - **DELETE:**
+    To delete a book using a DELETE request:
+    - Set the method to DELETE.
+    - Enter the URL with the book ID:
+      http://localhost:8080/books/1
+    - Click Send.
+
+- **Viewing Response And Status Code:**
+  After sending the request, you will see the response in the lower section of Insomnia:
+  - The status code (e.g., 200, 201, 404) will be displayed at the top of the response window.
+  - The response body will appear below the status code, showing the data returned from the server.
+
+- **Testing Other API Endpoints:**
+  To test other resources such as authors, genres, loans, or members, simply change the endpoint in the URL:
+  - For authors: http://localhost:8080/authors
+  - For genres: http://localhost:8080/genres
+  - For loans: http://localhost:8080/loans
+  - For members: http://localhost:8080/members
+
+  Make sure to adjust the request method and body accordingly for each type of operation (GET, POST, PUT, PATCH, DELETE).
+<br>
+
+By following these steps, you can easily test your API locally using Insomnia and ensure everything is functioning correctly before deploying it to a live server.
+---
+
+### **Web Server Deployment:**
 <br>
 The live deployment of the Library Management System (LMS) API is hosted on Render:
 
@@ -335,6 +420,24 @@ You can interact with the API through various HTTP requests (GET, POST, PUT, PAT
       "message": "Book deleted successfully"
     }
     ```
+<br>
+
+---
+
+## HTTP Status Codes
+
+HTTP status codes indicate the result of the API request. Below are common status codes you might encounter when interacting with the Library Management System (LMS) API:
+
+**200 OK**
+The 200 OK status code indicates that the request was successful, and the server has returned the requested data.
+<br>
+
+**201 CREATED**
+The 201 Created status code indicates that the request was successful and resulted in the creation of a new resource.
+<br>
+
+**404 NOT FOUND**
+The 404 Not Found status code indicates that the requested resource could not be found on the server.
 <br>
 
 ---

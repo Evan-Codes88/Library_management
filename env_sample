@@ -1,0 +1,4 @@
+DATABASE_URI=postgresql://username:password@localhost:5432/lms_api
+
+
+Replace username, password, and localhost with your postgreSQL credentials.

@@ -6,7 +6,6 @@ A simple but robust API used to manage a Library's operations. This includes boo
 
 ## Table of Contents
 - [Purpose](#purpose)
-- [Web Server Deployment](#Web-Server-Deployment)
 - [Features](#features)
 - [System Requirements](#system-requirements)
 - [Installation](#installation)
@@ -16,7 +15,8 @@ A simple but robust API used to manage a Library's operations. This includes boo
   - [Installing the Required Packages](#installing-the-required-packages)
   - [Required Packages](#required-packages)
 - [Prerequisites](#Prerequisites)
-  - [How to Run the API](#how-to-run-the-api)
+  - [How to Run the API Locally](#how-to-run-the-api-locally)
+  - [Web Server Deployment](#Web-Server-Deployment)
 - [Licensing and Legal/Ethical Impacts](#licensing-and-legalethical-impacts)
    - [License Overview](#license-overview)
    - [Full MIT License Text](#full-mit-license-text)
@@ -33,16 +33,6 @@ A simple but robust API used to manage a Library's operations. This includes boo
 ## **Purpose**
 
 This Library Management System (LMS) is designed to simplify the administrative tasks of librarians. It allows staff to effeciently manage book collections, member data, loan records and streamlines proccesses for efficiency.
-
-## **Web Server Deployment:**
-***URL:*** https://evan-library-management-system.onrender.com
-<br>
-This link is used for the live deployment of the Library Management System (LMS) API hosted on Render. You can interact with the API through various HTTP requests (GET, POST, PUT, PATCH, DELETE) to manage library resources, such as books, authors, genres, loans and members.
-<br>
-For example:
-    https://evan-library-management-system.onrender.com/books
-
-Will display all books within the database
 
 ## **Features**
 
@@ -190,16 +180,48 @@ flask db seed # This seeds alll of the data
 flask db drop # This will drop all tables and relations
 ```
 
-### How to Run the API
+### How to Run the API Locally
 
 1. Ensure your virtual environment is activated.
 2. Start the API server:
    ```bash
    flask run
    ```
-3. Access the API at `http://localhost:5432`.
+3. Access the API at `http://localhost:8080`.
 
 ---
+
+## **Web Server Deployment:**
+<br>
+The live deployment of the Library Management System (LMS) API is hosted on Render:
+
+**URL:** https://evan-library-management-system.onrender.com
+<br>
+
+***How To Use The Deployment:***
+You can interact with the API through various HTTP requests (GET, POST, PUT, PATCH, DELETE) to manage library resources, such as books, authors, genres, loans, and members.
+
+***CRUD Operations Examples:***
+
+- GET: Retrieve Resources
+
+  - Example: Fetch All Books:
+    ```
+    curl -X GET https://evan-library-management-system.onrender.com/books
+    ```
+
+    Expected Response:
+      ```
+      [
+        {
+          "id": 1,
+          "title": "Book Title",
+          "author": "Author Name",
+          "genre": "Genre",
+          "status": "available"
+        }
+      ]
+      ```
 
 
 

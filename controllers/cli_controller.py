@@ -105,6 +105,20 @@ def seed_tables():
             genre_id = 1
         ),
         Book(
+            title = "Elantris",
+            isbn = "978-0-7653-5036-7",
+            available_copies = 4,
+            author_id = 2,
+            genre_id = 1
+        ),
+        Book(
+            title = "Warbreaker",
+            isbn = "978-0-7653-2030-8",
+            available_copies = 4,
+            author_id = 2,
+            genre_id = 1
+        ),
+        Book(
             title = "Assassin's Apprentice",
             isbn = "978-0-553-37423-4",
             available_copies = 3,
@@ -202,6 +216,132 @@ def seed_tables():
             author_id = 9,
             genre_id = 1
         ),
+        Book(
+            title = "Foundation",
+            isbn = "978-0-553-29335-7",
+            available_copies = 2,
+            author_id = 10,
+            genre_id = 8
+        ),
+        Book(
+            title = "Pride and Prejudice",
+            isbn = "978-0-141-43951-8",
+            available_copies = 4,
+            author_id = 11,
+            genre_id = 4
+        ),
+        Book(
+            title = "The War Of The Worlds",
+            isbn = "978-0-141-44103-0",
+            available_copies = 2,
+            author_id = 12,
+            genre_id = 8
+        ),
+        Book(
+            title = "Treasure Island",
+            isbn = "978-0-141-32100-7",
+            available_copies = 6,
+            author_id = 13,
+            genre_id = 7
+        ),
+        Book(
+            title = "Wuthering Heights",
+            isbn = "978-0-141-43955-6",
+            available_copies = 1,
+            author_id = 14,
+            genre_id = 4
+        ),
+        Book(
+            title = "The Last Of The Breed",
+            isbn = "978-0-553-25364-1",
+            available_copies = 2,
+            author_id = 15,
+            genre_id = 7
+        ),
+        Book(
+            title = "The Duke And I",
+            isbn = "978-0-062-34285-3",
+            available_copies = 3,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "The Viscount Who Loved Me",
+            isbn = "978-0-06-235359-9",
+            available_copies = 2,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "An Offer From A Gentleman",
+            isbn = "978-0-06-235360-5",
+            available_copies = 4,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "Romancing Mister Bridgerton",
+            isbn = "978-0-06-235361-2",
+            available_copies = 4,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "To Sir Phillip, With Love",
+            isbn = "978-0-06-235362-9",
+            available_copies = 5,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "When He Was Wicked",
+            isbn = "978-0-06-235363-6",
+            available_copies = 2,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "It's in His Kiss",
+            isbn = "978-0-06-235364-3",
+            available_copies = 1,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "On the Way to the Wedding",
+            isbn = "978-0-06-235365-0",
+            available_copies = 1,
+            author_id = 16,
+            genre_id = 4
+        ),
+        Book(
+            title = "The Martian",
+            isbn = "978-0-553-41802-6",
+            available_copies = 4,
+            author_id = 17,
+            genre_id = 8
+        ),
+        Book(
+            title = "Project Hail Mary",
+            isbn = "978-0-593-08166-2",
+            available_copies = 4,
+            author_id = 17,
+            genre_id = 8
+        ),
+        Book(
+            title = "Artemis",
+            isbn = "978-0-553-44811-5",
+            available_copies = 4,
+            author_id = 17,
+            genre_id = 8
+        ),
+        Book(
+            title = "Gulliver's Travels",
+            isbn = "978-1-503-28366-1",
+            available_copies = 2,
+            author_id = 18,
+            genre_id = 7
+        )
     ]
     
     db.session.add_all(books)
@@ -271,6 +411,42 @@ def seed_tables():
             name = "J.K. Rowling",
             birth_year = 1965
         ),
+        Author(
+            name = "Isaac Asimov",
+            birth_year = 1892
+        ),
+        Author(
+            name = "Jane Austen",
+            birth_year = 1775
+        ),
+        Author(
+            name = "H.G. Wells",
+            birth_year = 1866
+        ),
+        Author(
+            name = "Robert Louis Stevenson",
+            birth_year = 1850
+        ),
+        Author(
+            name = "Emily Bronte",
+            birth_year = 1818
+        ),
+        Author(
+            name = "Louis L'Amour",
+            birth_year = 1908
+        ),
+        Author(
+            name = "Julia Quinn",
+            birth_year = 1970
+        ),
+        Author(
+            name = "Andy Weir",
+            birth_year = 1972
+        ),
+        Author(
+            name = "Jonathan Swift",
+            birth_year = 1667
+        )
     ]
 
     db.session.add_all(authors)
